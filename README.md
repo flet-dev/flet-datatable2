@@ -1,5 +1,8 @@
-# flet-datatable2
-DataTable2 control for Flet
+# DataTable2
+
+DataTable2 Control for Flet based on [DataTable2 package](https://pub.dev/packages/data_table_2) for Flutter. 
+
+DataTable2 features fixed/sticky header/top rows and left columns and many other useful features additionally to all the properties of built-in Flet [DataTable](https://flet.dev/docs/controls/datatable).
 
 ## Installation
 
