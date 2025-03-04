@@ -420,6 +420,15 @@
 <p>DataTable2 Control for Flet based on <a href="https://pub.dev/packages/data_table_2">DataTable2 package</a> for Flutter. </p>
 <p>DataTable2 features fixed/sticky header/top rows and left columns and many other useful features additionally to all the properties of built-in Flet <a href="https://flet.dev/docs/controls/datatable">DataTable</a>.</p>
 <h2 id="installation">Installation</h2>
+<p>Add dependency to <code>pyproject.toml</code> of your Flet app:</p>
+<pre><code>dependencies = [
+  &quot;flet-datatable2 @ git+https://github.com/flet-dev/flet_datatable2.git&quot;,
+  &quot;flet&gt;=0.27.4&quot;,
+]
+</code></pre>
+<p>Build your app:</p>
+<pre><code>flet build macos -v
+</code></pre>
 <h2 id="examples">Examples</h2>
 <p><a href="https://flet-controls-gallery.fly.dev/layout/datatable2">Live example</a></p>
 <h3 id="datatable2-with-empty-property-and-no-data-rows">DataTable2 with <code>empty</code> property and no data rows</h3>
