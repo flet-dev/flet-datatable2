@@ -262,7 +262,12 @@ dependencies = [
 requires-dist = [{ name = "flet", specifier = ">=0.27.3" }]
 
 [package.metadata.requires-dev]
-dev = [{ name = "flet", extras = ["all"], specifier = "==0.27.3" }]
+dev = [
+    { name = "flet", extras = ["all"], specifier = "==0.27.3" },
+    { name = "mkdocs" },
+    { name = "mkdocs-material" },
+    { name = "mkdocstrings", extras = ["python"] },
+]
 
 [[package]]
 name = "flet-datatable2-example"

@@ -470,7 +470,9 @@ class DataTable2(ConstrainedControl):
     # horizontal_lines
     @property
     def horizontal_lines(self) -> Optional[BorderSide]:
-
+        """
+        See DataTable [horizontal_lines](https://flet.dev/docs/controls/datatable#horizontal_lines).
+        """
         return self.__horizontal_lines
 
     @horizontal_lines.setter
@@ -480,6 +482,9 @@ class DataTable2(ConstrainedControl):
     # vertical_lines
     @property
     def vertical_lines(self) -> Optional[BorderSide]:
+        """
+        See DataTable [vertical_lines](https://flet.dev/docs/controls/datatable#vertical_lines).
+        """
         return self.__vertical_lines
 
     @vertical_lines.setter
@@ -489,6 +494,9 @@ class DataTable2(ConstrainedControl):
     # checkbox_horizontal_margin
     @property
     def checkbox_horizontal_margin(self) -> OptionalNumber:
+        """
+        See DataTable [checkbox_horizontal_margin](https://flet.dev/docs/controls/datatable#checkbox_horizontal_margin).
+        """
         return self._get_attr("checkboxHorizontalMargin")
 
     @checkbox_horizontal_margin.setter
@@ -498,6 +506,11 @@ class DataTable2(ConstrainedControl):
     # checkbox_alignment
     @property
     def checkbox_alignment(self) -> Optional[Alignment]:
+        """
+        **NEW**
+
+        Alignment of the checkbox if it is displayed. Defaults to the `alignment.center`.
+        """
         return self.__checkbox_alignment
 
     @checkbox_alignment.setter
@@ -507,6 +520,12 @@ class DataTable2(ConstrainedControl):
     # heading_checkbox_theme
     @property
     def heading_checkbox_theme(self) -> Optional[CheckboxTheme]:
+        """
+        **NEW**
+
+        Overrides theme of the checkbox that is displayed in the top left corner of the heading (if checkboxes are enabled).
+        Value is an instance of [CheckboxTheme](https://flet.dev/docs/reference/types/checkboxtheme).
+        """
         return self.__heading_checkbox_theme
 
     @heading_checkbox_theme.setter
@@ -516,6 +535,12 @@ class DataTable2(ConstrainedControl):
     # data_row_checkbox_theme
     @property
     def data_row_checkbox_theme(self) -> Optional[CheckboxTheme]:
+        """
+        **NEW**
+
+        Overrides theme of the checkboxes that are displayed in the checkbox column in each data row (if checkboxes are enabled).
+        Value is an instance of [CheckboxTheme](https://flet.dev/docs/reference/types/checkboxtheme).
+        """
         return self.__data_row_checkbox_theme
 
     @data_row_checkbox_theme.setter
@@ -525,6 +550,9 @@ class DataTable2(ConstrainedControl):
     # column_spacing
     @property
     def column_spacing(self) -> OptionalNumber:
+        """
+        See DataTable [column_spacing](https://flet.dev/docs/controls/datatable#column_spacing).
+        """
         return self._get_attr("columnSpacing")
 
     @column_spacing.setter
@@ -534,6 +562,9 @@ class DataTable2(ConstrainedControl):
     # divider_thickness
     @property
     def divider_thickness(self) -> float:
+        """
+        See DataTable [divider_thickness](https://flet.dev/docs/controls/datatable#divider_thickness).
+        """
         return self._get_attr("dividerThickness", data_type="float", def_value=1.0)
 
     @divider_thickness.setter
@@ -543,6 +574,9 @@ class DataTable2(ConstrainedControl):
     # horizontal_margin
     @property
     def horizontal_margin(self) -> OptionalNumber:
+        """
+        See DataTable [horizontal_margin](https://flet.dev/docs/controls/datatable#horizontal_margin).
+        """
         return self._get_attr("horizontalMargin")
 
     @horizontal_margin.setter
@@ -552,6 +586,19 @@ class DataTable2(ConstrainedControl):
     # heading_row_decoration
     @property
     def heading_row_decoration(self) -> Optional[BoxDecoration]:
+        """
+        **NEW**
+
+        Decoration to be applied to the heading row.
+        Value is an instance of [BoxDecoration](https://flet.dev/docs/reference/types/boxdecoration).
+
+        When both `heading_row_color` and 'heading_row_decoration' are provided:
+
+        * `heading_row_decoration` takes precedence if there're 0 or 1 fixed rows
+        * `headeing_row_color` is applied to fixed top starting from the second row.
+        * When there're both fixed top rows and fixed left columns with `fixed_corner_color` provided, this decoration overrides top left corner cell color.
+
+        """
         return self.__heading_row_decoration
 
     @heading_row_decoration.setter
@@ -561,6 +608,9 @@ class DataTable2(ConstrainedControl):
     # data_row_color
     @property
     def data_row_color(self) -> ControlStateValue[str]:
+        """
+        See DataTable [data_row_color](https://flet.dev/docs/controls/datatable#data_row_color).
+        """
         return self.__data_row_color
 
     @data_row_color.setter
@@ -570,6 +620,12 @@ class DataTable2(ConstrainedControl):
     # data_row_height
     @property
     def data_row_height(self) -> OptionalNumber:
+        """
+        **NEW**
+        The height of each row (excluding the row that contains column headings).
+
+        Note that, unlike in Flet [DataTable](https://flet.dev/docs/controls/datatable), there's no capability to define min/max height of a row. This is an implementation tradeoff making it possible to have performant sticky columns.
+        """
         return self._get_attr("dataRowHeight")
 
     @data_row_height.setter
@@ -579,6 +635,9 @@ class DataTable2(ConstrainedControl):
     # data_text_style
     @property
     def data_text_style(self) -> Optional[TextStyle]:
+        """
+        See DataTable [data_text_style](https://flet.dev/docs/controls/datatable#data_text_style).
+        """
         return self.__data_text_style
 
     @data_text_style.setter
@@ -588,6 +647,9 @@ class DataTable2(ConstrainedControl):
     # bgcolor
     @property
     def bgcolor(self) -> Optional[ColorValue]:
+        """
+        See DataTable [bgcolor](https://flet.dev/docs/controls/datatable#bgcolor).
+        """
         return self.__bgcolor
 
     @bgcolor.setter
@@ -598,6 +660,9 @@ class DataTable2(ConstrainedControl):
     # gradient
     @property
     def gradient(self) -> Optional[Gradient]:
+        """
+        See DataTable [gradient](https://flet.dev/docs/controls/datatable#gradient).
+        """
         return self.__gradient
 
     @gradient.setter
@@ -607,6 +672,9 @@ class DataTable2(ConstrainedControl):
     # heading_row_color
     @property
     def heading_row_color(self) -> ControlStateValue[str]:
+        """
+        See DataTable [heading_row_color](https://flet.dev/docs/controls/datatable#heading_row_color).
+        """
         return self.__heading_row_color
 
     @heading_row_color.setter
@@ -616,6 +684,9 @@ class DataTable2(ConstrainedControl):
     # heading_row_height
     @property
     def heading_row_height(self) -> OptionalNumber:
+        """
+        See DataTable [heading_row_height](https://flet.dev/docs/controls/datatable#heading_row_height).
+        """
         return self._get_attr("headingRowHeight")
 
     @heading_row_height.setter
@@ -625,6 +696,9 @@ class DataTable2(ConstrainedControl):
     # heading_text_style
     @property
     def heading_text_style(self) -> Optional[TextStyle]:
+        """
+        See DataTable [heading_text_style](https://flet.dev/docs/controls/datatable#heading_text_style).
+        """
         return self.__heading_text_style
 
     @heading_text_style.setter
@@ -634,6 +708,9 @@ class DataTable2(ConstrainedControl):
     # show_bottom_border
     @property
     def show_bottom_border(self) -> bool:
+        """
+        See DataTable [show_bottom_border](https://flet.dev/docs/controls/datatable#show_bottom_border).
+        """
         return self._get_attr("showBottomBorder", data_type="bool", def_value=False)
 
     @show_bottom_border.setter
@@ -643,6 +720,9 @@ class DataTable2(ConstrainedControl):
     # show_checkbox_column
     @property
     def show_checkbox_column(self) -> bool:
+        """
+        See DataTable [show_checkbox_column](https://flet.dev/docs/controls/datatable#show_checkbox_column).
+        """
         return self._get_attr("showCheckboxColumn", data_type="bool", def_value=False)
 
     @show_checkbox_column.setter
@@ -652,6 +732,11 @@ class DataTable2(ConstrainedControl):
     # show_heading_checkbox
     @property
     def show_heading_checkbox(self) -> bool:
+        """
+        **NEW**
+
+        Whether to display heading checkbox or not, if the checkbox column is present. Defaults to `True`.
+        """
         return self._get_attr("showHeadingCheckbox", data_type="bool", def_value=False)
 
     @show_heading_checkbox.setter
@@ -661,6 +746,9 @@ class DataTable2(ConstrainedControl):
     # sort_ascending
     @property
     def sort_ascending(self) -> bool:
+        """
+        See DataTable [sort_ascending](https://flet.dev/docs/controls/datatable#sort_ascending).
+        """
         return self._get_attr("sortAscending", data_type="bool", def_value=False)
 
     @sort_ascending.setter
@@ -670,6 +758,11 @@ class DataTable2(ConstrainedControl):
     # is_horizontal_scroll_bar_visible
     @property
     def is_horizontal_scroll_bar_visible(self) -> bool:
+        """
+        **NEW**
+
+        Determines whether the horizontal scroll bar is visible.
+        """
         return self._get_attr("isHorizontalScrollBarVisible", data_type="bool")
 
     @is_horizontal_scroll_bar_visible.setter
@@ -679,6 +772,11 @@ class DataTable2(ConstrainedControl):
     # is_vertical_scroll_bar_visible
     @property
     def is_vertical_scroll_bar_visible(self) -> bool:
+        """
+        **NEW**
+
+        Determines whether the vertical scroll bar is visible.
+        """
         return self._get_attr(
             "isVerticalScrollBarVisible", data_type="bool", def_value=False
         )
@@ -690,6 +788,9 @@ class DataTable2(ConstrainedControl):
     # sort_column_index
     @property
     def sort_column_index(self) -> Optional[int]:
+        """
+        See DataTable [sort_column_index](https://flet.dev/docs/controls/datatable#sort_column_index).
+        """
         return self._get_attr("sortColumnIndex")
 
     @sort_column_index.setter
@@ -699,6 +800,9 @@ class DataTable2(ConstrainedControl):
     # clip_behavior
     @property
     def clip_behavior(self) -> Optional[ClipBehavior]:
+        """
+        See DataTable [clip_behavior](https://flet.dev/docs/controls/datatable#clip_behavior).
+        """
         return self.__clip_behavior
 
     @clip_behavior.setter
@@ -709,6 +813,9 @@ class DataTable2(ConstrainedControl):
     # on_select_all
     @property
     def on_select_all(self) -> OptionalControlEventCallable:
+        """
+        See DataTable [on_select_all](https://flet.dev/docs/controls/datatable#on_select_all).
+        """
         return self._get_event_handler("select_all")
 
     @on_select_all.setter
@@ -717,41 +824,41 @@ class DataTable2(ConstrainedControl):
         self._set_attr("onSelectAll", True if handler is not None else None)
 
 
-class Item(Control):
-    def __init__(self, obj):
-        Control.__init__(self)
-        assert obj, "obj cannot be empty"
-        self.obj = obj
+# class Item(Control):
+#     def __init__(self, obj):
+#         Control.__init__(self)
+#         assert obj, "obj cannot be empty"
+#         self.obj = obj
 
-    def _set_attr(self, name, value, dirty=True):
-        if value is None:
-            return
+#     def _set_attr(self, name, value, dirty=True):
+#         if value is None:
+#             return
 
-        orig_val = self._get_attr(name)
-        if orig_val is not None:
-            if isinstance(orig_val, bool):
-                value = str(value).lower() == "true"
-            elif isinstance(orig_val, float):
-                value = float(str(value))
+#         orig_val = self._get_attr(name)
+#         if orig_val is not None:
+#             if isinstance(orig_val, bool):
+#                 value = str(value).lower() == "true"
+#             elif isinstance(orig_val, float):
+#                 value = float(str(value))
 
-        self._set_attr_internal(name, value, dirty=False)
-        if isinstance(self.obj, dict):
-            self.obj[name] = value
-        else:
-            setattr(self.obj, name, value)
+#         self._set_attr_internal(name, value, dirty=False)
+#         if isinstance(self.obj, dict):
+#             self.obj[name] = value
+#         else:
+#             setattr(self.obj, name, value)
 
-    def _fetch_attrs(self):
-        # reflection
-        obj = self.obj if isinstance(self.obj, dict) else vars(self.obj)
+#     def _fetch_attrs(self):
+#         # reflection
+#         obj = self.obj if isinstance(self.obj, dict) else vars(self.obj)
 
-        for name, val in obj.items():
-            data_type = (
-                type(val).__name__ if isinstance(val, (bool, float)) else "string"
-            )
-            orig_val = self._get_attr(name, data_type=data_type)
+#         for name, val in obj.items():
+#             data_type = (
+#                 type(val).__name__ if isinstance(val, (bool, float)) else "string"
+#             )
+#             orig_val = self._get_attr(name, data_type=data_type)
 
-            if val != orig_val:
-                self._set_attr_internal(name, val, dirty=True)
+#             if val != orig_val:
+#                 self._set_attr_internal(name, val, dirty=True)
 
-    def _get_control_name(self):
-        return "item"
+#     def _get_control_name(self):
+#         return "item"
