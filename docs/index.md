@@ -54,10 +54,10 @@ See source code for this example [here](https://github.com/flet-dev/flet_datatab
 
 ## Classes
 
-[DataTable2](/datatable2)
+[DataTable2](datatable2)
 
-[DataColumn2](/datacolumn2)
+[DataColumn2](datacolumn2)
 
-[DataRow2](/datarow2)
+[DataRow2](datarow2)
 
 
