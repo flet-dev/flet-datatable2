@@ -6,6 +6,20 @@ DataTable2 features fixed/sticky header/top rows and left columns and many other
 
 ## Installation
 
+Add dependency to `pyproject.toml` of your Flet app:
+
+```
+dependencies = [
+  "flet-datatable2 @ git+https://github.com/flet-dev/flet_datatable2.git",
+  "flet>=0.27.4",
+]
+```
+
+Build your app:
+```
+flet build macos -v
+```
+
 ## Examples
 
 [Live example](https://flet-controls-gallery.fly.dev/layout/datatable2)
