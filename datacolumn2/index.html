@@ -700,7 +700,10 @@
 <span class="normal">167</span>
 <span class="normal">168</span>
 <span class="normal">169</span>
-<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DataColumn2</span><span class="p">(</span><span class="n">Control</span><span class="p">):</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DataColumn2</span><span class="p">(</span><span class="n">Control</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Column configuration for a [DataTable2](/datatable2).</span>
 
 <span class="sd">    One column configuration must be provided for each column to display in the table.</span>
@@ -753,10 +756,8 @@
     <span class="c1"># label</span>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Control</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The column heading.</span>
-
-<span class="sd">        Typically, this will be a Text control.</span>
-<span class="sd">        It could also be an Icon (typically using size 18), or a Row with an icon and some text.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        See DataColumn [label](https://flet.dev/docs/controls/datatable#label).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__label</span>
 
@@ -767,7 +768,10 @@
     <span class="c1"># size</span>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Size</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Column sizes are determined based on available width by distributing it to individual columns accounting for their relative sizes.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **NEW**</span>
+
+<span class="sd">        Column sizes are determined based on available width by distributing it to individual columns accounting for their relative sizes.</span>
 
 <span class="sd">        Value is of type `Size` and defaults to `Size.S`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -781,9 +785,9 @@
     <span class="c1"># numeric</span>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether this column represents numeric data or not.</span>
-
-<span class="sd">        The contents of cells of columns containing numeric data are right-aligned.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        See DataColumn [numeric](https://flet.dev/docs/controls/datatable#numeric).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_attr</span><span class="p">(</span><span class="s2">&quot;numeric&quot;</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span><span class="p">,</span> <span class="n">def_value</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -794,7 +798,11 @@
     <span class="c1"># fixed_width</span>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">fixed_width</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptionalNumber</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines absolute width of the column in pixel (as opposed to relative `size` used by default).&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **NEW**</span>
+
+<span class="sd">        Defines absolute width of the column in pixel (as opposed to relative `size` used by default).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_attr</span><span class="p">(</span><span class="s2">&quot;fixedWidth&quot;</span><span class="p">)</span>
 
     <span class="nd">@fixed_width</span><span class="o">.</span><span class="n">setter</span>
@@ -804,9 +812,8 @@
     <span class="c1"># tooltip</span>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">tooltip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The column heading&#39;s tooltip.</span>
-
-<span class="sd">        This is a longer description of the column heading, for cases where the heading might have been abbreviated to keep the column width to a reasonable size.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        See DataColumn [tooltip](https://flet.dev/docs/controls/datatable#tooltip).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_attr</span><span class="p">(</span><span class="s2">&quot;tooltip&quot;</span><span class="p">)</span>
 
@@ -817,9 +824,8 @@
     <span class="c1"># heading_row_alignment</span>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">heading_row_alignment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MainAxisAlignment</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines the horizontal layout of the label and sort indicator in the heading row.</span>
-
-<span class="sd">        Value is of type [MainAxisAlignment](https://flet.dev/docs/reference/types/mainaxisalignment) and defaults to `MainAxisAlignment.START`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        See DataColumn [heading_row_alignment](https://flet.dev/docs/controls/datatable#heading_row_alignment).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__heading_row_alignment</span>
 
@@ -831,9 +837,9 @@
     <span class="c1"># on_sort</span>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">on_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptionalEventCallable</span><span class="p">[</span><span class="s2">&quot;DataColumnSortEvent&quot;</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Called when the user asks to sort the table using this column.</span>
-
-<span class="sd">        If not set, the column will not be considered sortable.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        See DataColumn [on_sort](https://flet.dev/docs/controls/datatable#on_sort).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__on_sort</span><span class="o">.</span><span class="n">handler</span>
 
     <span class="nd">@on_sort</span><span class="o">.</span><span class="n">setter</span>
@@ -870,7 +876,8 @@
 
     <div class="doc doc-contents ">
 
-        <p>Defines absolute width of the column in pixel (as opposed to relative <code>size</code> used by default).</p>
+        <p><strong>NEW</strong></p>
+<p>Defines absolute width of the column in pixel (as opposed to relative <code>size</code> used by default).</p>
     </div>
 
 </div>
@@ -892,8 +899,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Defines the horizontal layout of the label and sort indicator in the heading row.</p>
-<p>Value is of type <a href="https://flet.dev/docs/reference/types/mainaxisalignment">MainAxisAlignment</a> and defaults to <code>MainAxisAlignment.START</code>.</p>
+        <p>See DataColumn <a href="https://flet.dev/docs/controls/datatable#heading_row_alignment">heading_row_alignment</a>.</p>
     </div>
 
 </div>
@@ -915,9 +921,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>The column heading.</p>
-<p>Typically, this will be a Text control.
-It could also be an Icon (typically using size 18), or a Row with an icon and some text.</p>
+        <p>See DataColumn <a href="https://flet.dev/docs/controls/datatable#label">label</a>.</p>
     </div>
 
 </div>
@@ -939,8 +943,7 @@ It could also be an Icon (typically using size 18), or a Row with an icon and so
 
     <div class="doc doc-contents ">
 
-        <p>Whether this column represents numeric data or not.</p>
-<p>The contents of cells of columns containing numeric data are right-aligned.</p>
+        <p>See DataColumn <a href="https://flet.dev/docs/controls/datatable#numeric">numeric</a>.</p>
     </div>
 
 </div>
@@ -962,8 +965,7 @@ It could also be an Icon (typically using size 18), or a Row with an icon and so
 
     <div class="doc doc-contents ">
 
-        <p>Called when the user asks to sort the table using this column.</p>
-<p>If not set, the column will not be considered sortable.</p>
+        <p>See DataColumn <a href="https://flet.dev/docs/controls/datatable#on_sort">on_sort</a>.</p>
     </div>
 
 </div>
@@ -985,7 +987,8 @@ It could also be an Icon (typically using size 18), or a Row with an icon and so
 
     <div class="doc doc-contents ">
 
-        <p>Column sizes are determined based on available width by distributing it to individual columns accounting for their relative sizes.</p>
+        <p><strong>NEW</strong></p>
+<p>Column sizes are determined based on available width by distributing it to individual columns accounting for their relative sizes.</p>
 <p>Value is of type <code>Size</code> and defaults to <code>Size.S</code>.</p>
     </div>
 
@@ -1008,8 +1011,7 @@ It could also be an Icon (typically using size 18), or a Row with an icon and so
 
     <div class="doc doc-contents ">
 
-        <p>The column heading's tooltip.</p>
-<p>This is a longer description of the column heading, for cases where the heading might have been abbreviated to keep the column width to a reasonable size.</p>
+        <p>See DataColumn <a href="https://flet.dev/docs/controls/datatable#tooltip">tooltip</a>.</p>
     </div>
 
 </div>
