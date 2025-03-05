@@ -29,7 +29,7 @@ class DataColumnSortEvent(ControlEvent):
 
 
 class DataColumn2(Control):
-    """Column configuration for a [DataTable2](/datatable2).
+    """Column configuration for a [DataTable2](datatable2.md).
 
     One column configuration must be provided for each column to display in the table.
 

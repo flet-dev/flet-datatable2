@@ -2,6 +2,8 @@ site_name: DataTable2
 
 theme:
   name: "material"
+  favicon: 'images/favicon.ico'
+  logo: 'images/logo.svg'
 
 plugins:
   - mkdocstrings

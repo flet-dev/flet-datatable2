@@ -36,8 +36,8 @@ class DataTable2(ConstrainedControl):
     """In-place replacement of standard Flet [DataTable](https://flet.dev/docs/controls/datatable).
 
     Has the header row always fixed and core of the table (with data rows) scrollable and stretching to max width/height of it's container.
-    By using [DataColumn2](/datacolumn2) instead of [DataColumn](https://flet.dev/docs/controls/datatable#datacolumn) it is possible to control relative column sizes (setting them to S, M and L).
-    [DataRow2](/datarow2) provides row-level tap event handlers.
+    By using [DataColumn2](datacolumn2.md) instead of [DataColumn](https://flet.dev/docs/controls/datatable#datacolumn) it is possible to control relative column sizes (setting them to S, M and L).
+    [DataRow2](datarow2.md) provides row-level tap event handlers.
     """
 
     def __init__(
@@ -266,7 +266,7 @@ class DataTable2(ConstrainedControl):
     @property
     def columns(self) -> List[DataColumn2]:
         """
-        A list of [DataColumn2](/datacolumn2) controls describing table columns.
+        A list of [DataColumn2](datacolumn2.md) controls describing table columns.
         """
         return self.__columns
 
@@ -281,7 +281,7 @@ class DataTable2(ConstrainedControl):
     @property
     def rows(self) -> Optional[List[DataRow2]]:
         """
-        A list of [DataRow2](/datarow2) controls defining table rows.
+        A list of [DataRow2](datarow2.md) controls defining table rows.
         """
         return self.__rows
 
