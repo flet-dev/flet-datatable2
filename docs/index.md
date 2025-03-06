@@ -1,4 +1,4 @@
-# Introduction
+# Getting Started
 
 DataTable2 Control for Flet based on [DataTable2 package](https://pub.dev/packages/data_table_2) for Flutter. 
 

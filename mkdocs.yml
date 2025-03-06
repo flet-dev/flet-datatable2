@@ -1,4 +1,4 @@
-site_name: DataTable2
+site_name: "DataTable2"
 
 theme:
   name: "material"
@@ -7,3 +7,9 @@ theme:
 
 plugins:
   - mkdocstrings
+
+nav:
+  - Getting Started: index.md
+  - DataTable2: datatable2.md
+  - DataColumn2: datacolumn2.md
+  - DataRow2: datarow2.md
