@@ -8,7 +8,7 @@ authors = [
     { name = "Flet contributors", email = "you@example.com" }
 ]
 dependencies = [
-    "flet>=0.27.3",
+    "flet",
 ]
 
 [project.urls]
@@ -22,17 +22,18 @@ Issues = "https://github.com/MyGithubAccount/flet-datatable2/issues"
 
 [tool.uv]
 dev-dependencies = [
-    "flet[all]==0.27.3",
+    "flet",
+    "flet-cli",
+    "flet-desktop",
     "mkdocs", 
     "mkdocs-material",
     "mkdocstrings[python]"
 ]
 
-[tool.poetry.group.dev.dependencies]
-flet = {extras = ["all"], version = "0.27.3"}
-mkdocs = "^1.0"
-mkdocstrings = { extras = ["python"], version = "^0.10" }
-mkdocs-material = "^8.0"
+[tool.uv.sources]
+flet = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet", rev = "v1" }
+flet-cli = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet-cli", rev = "v1" }
+flet-desktop = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet-desktop", rev = "v1" }
 
 [tool.setuptools]
 license-files = []

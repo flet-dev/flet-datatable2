@@ -9,7 +9,7 @@ authors = [
 ]
 dependencies = [
   "flet-datatable2",
-  "flet>=0.27.3",
+  "flet",
 ]
 
 [tool.flet]
@@ -25,7 +25,7 @@ product = "flet-datatable2-example"
 company = "Flet"
 
 # copyright text to display in about app dialogs
-copyright = "Copyright (C) 2025 by MyCompany"
+copyright = "Copyright (C) 2025 by Flet"
 
 [tool.flet.app]
 path = "src"
@@ -35,11 +35,13 @@ flet-datatable2 = "../.." # relative path
 
 [tool.uv]
 dev-dependencies = [
-    "flet[all]==0.27.3",
+    "flet",
+    "flet-cli",
+    "flet-desktop",
 ]
 
 [tool.uv.sources]
 flet-datatable2 = { path = "../../", editable = true }
-
-[tool.poetry.group.dev.dependencies]
-flet = {extras = ["all"], version = "0.27.3"}
+flet = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet", rev = "v1" }
+flet-cli = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet-cli", rev = "v1" }
+flet-desktop = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet-desktop", rev = "v1" }
