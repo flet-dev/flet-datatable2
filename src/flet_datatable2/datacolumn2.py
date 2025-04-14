@@ -40,7 +40,7 @@ class DataColumn2(ft.Control):
     """
 
 
-    label: ft.Control,
+    label: ft.Control
     size: Optional[Size] = None
     numeric: Optional[bool] = None
     tooltip: Optional[str] = None
