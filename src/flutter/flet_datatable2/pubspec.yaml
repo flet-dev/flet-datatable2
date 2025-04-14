@@ -10,7 +10,13 @@ environment:
 
 dependencies:
   data_table_2: ^2.5.18
-  flet: 0.26.0
+  # flet: 0.26.0
+  flet:
+    git:
+      path: packages/flet
+      ref: v1
+      url: https://github.com/flet-dev/flet.git
+
   flutter:
     sdk: flutter
 

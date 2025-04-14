@@ -54,44 +54,44 @@ class _DataTable2ControlState extends State<DataTable2Control>
           defValue;
     }
 
-    var datatable =
-        withControls(widget.children.where((c) => c.isVisible).map((c) => c.id),
-            (content, viewModel) {
-      var emptyCtrls =
-          widget.children.where((c) => c.name == "empty" && c.isVisible);
-      Widget? empty = emptyCtrls.isNotEmpty
-          ? createControl(
-              widget.control, emptyCtrls.first.id, widget.control.isDisabled)
-          : null;
-      IconData? sortArrowIcon =
-          parseIcon(widget.control.attrString("sortArrowIcon"));
-      var bgColor = widget.control.attrString("bgColor");
-      var border = parseBorder(Theme.of(context), widget.control, "border");
-      var borderRadius = parseBorderRadius(widget.control, "borderRadius");
-      var gradient =
-          parseGradient(Theme.of(context), widget.control, "gradient");
-      var horizontalLines =
-          parseBorderSide(Theme.of(context), widget.control, "horizontalLines");
-      var verticalLines =
-          parseBorderSide(Theme.of(context), widget.control, "verticalLines");
-      var defaultDecoration =
-          Theme.of(context).dataTableTheme.decoration ?? const BoxDecoration();
-      var checkboxAlignment = parseAlignment(
-          widget.control, "checkboxAlignment", Alignment.center)!;
+    // var datatable =
+    //     withControls(widget.children.where((c) => c.isVisible).map((c) => c.id),
+    //         (content, viewModel) {
+    //   var emptyCtrls =
+    //       widget.children.where((c) => c.name == "empty" && c.isVisible);
+    //   Widget? empty = emptyCtrls.isNotEmpty
+    //       ? createControl(
+    //           widget.control, emptyCtrls.first.id, widget.control.isDisabled)
+    //       : null;
+    IconData? sortArrowIcon =
+          widget.control.getIcon("sortArrowIcon");
+    var bgColor = widget.control.getString("bgcolor");
+    var border = widget.control.getBorder("border", Theme.of(context));
+    var borderRadius = widget.control.getBorderRadius("border_radius");
+    var gradient =
+         widget.control.getGradient("gradient", Theme.of(context));
+    var horizontalLines =
+          widget.control.getBorderSide("horizontal_lines", Theme.of(context));
+    var verticalLines =
+          widget.control.getBorderSide("vertical_lines", Theme.of(context));
+    var defaultDecoration =
+           Theme.of(context).dataTableTheme.decoration ?? const BoxDecoration();
+    var checkboxAlignment = widget.control.getAlignment(
+          "checkboxAlignment", Alignment.center)!;
 
-      BoxDecoration? decoration;
+    BoxDecoration? decoration;
       if (bgColor != null ||
           border != null ||
           borderRadius != null ||
           gradient != null) {
         decoration = (defaultDecoration as BoxDecoration).copyWith(
-            color: parseColor(Theme.of(context), bgColor),
+            color: parseColor(bgColor, Theme.of(context)),
             border: border,
             borderRadius: borderRadius,
             gradient: gradient);
       }
 
-      TableBorder? tableBorder;
+    TableBorder? tableBorder;
       if (horizontalLines != null || verticalLines != null) {
         tableBorder = TableBorder(
             horizontalInside: horizontalLines ?? BorderSide.none,
@@ -99,75 +99,68 @@ class _DataTable2ControlState extends State<DataTable2Control>
       }
 
       Clip clipBehavior =
-          parseClip(widget.control.attrString("clipBehavior"), Clip.none)!;
+          widget.control.getClipBehavior("clipBehavior", Clip.none)!;
 
-      return withPageArgs((context, pageArgs) {
-        return DataTable2(
-            bottomMargin: widget.control.attrDouble("bottomMargin"),
-            minWidth: widget.control.attrDouble("minWidth"),
+    //   return withPageArgs((context, pageArgs) {
+        //return 
+    var datatable2 = DataTable2(
+            bottomMargin: widget.control.getDouble("bottomMargin"),
+            minWidth: widget.control.getDouble("minWidth"),
             //horizontalScrollController: _horizontalController,
             //scrollController: _controller,
             decoration: decoration,
             border: tableBorder,
-            empty: empty,
+            empty: widget.control.buildWidget("empty"),
             isHorizontalScrollBarVisible:
-                widget.control.attrBool("isHorizontalScrollBarVisible"),
+                widget.control.getBool("is_horizontal_scroll_bar_visible"),
             isVerticalScrollBarVisible:
-                widget.control.attrBool("isVerticalScrollBarVisible"),
-            fixedLeftColumns: widget.control.attrInt("fixedLeftColumns") ?? 0,
-            fixedTopRows: widget.control.attrInt("fixedTopRows") ?? 1,
+                widget.control.getBool("is_vertical_scroll_bar_visible"),
+            fixedLeftColumns: widget.control.getInt("fixed_left_columns") ?? 0,
+            fixedTopRows: widget.control.getInt("fixed_top_rows") ?? 1,
             fixedColumnsColor:
-                widget.control.attrColor("fixedColumnsColor", context),
+                widget.control.getColor("fixed_columns_color", context),
             fixedCornerColor:
-                widget.control.attrColor("fixedCornerColor", context),
-            smRatio: widget.control.attrDouble("smRatio") ?? 0.67,
-            lmRatio: widget.control.attrDouble("lmRatio") ?? 1.2,
+                widget.control.getColor("fixed_corner_color", context),
+            smRatio: widget.control.getDouble("sm_ratio") ?? 0.67,
+            lmRatio: widget.control.getDouble("lm_ratio") ?? 1.2,
             clipBehavior: clipBehavior,
             sortArrowIcon: sortArrowIcon ?? Icons.arrow_upward,
             sortArrowAnimationDuration:
-                parseDuration(widget.control, "sortArrowAnimationDuration") ??
+                widget.control.getDuration("sort_arrow_animation_duration") ??
                     Duration(microseconds: 150),
             checkboxHorizontalMargin:
-                widget.control.attrDouble("checkboxHorizontalMargin"),
+                widget.control.getDouble("checkbox_horizontal_margin"),
             checkboxAlignment: checkboxAlignment,
-            headingCheckboxTheme: parseCheckboxTheme(
-                Theme.of(context),
-                widget.control.attrString("headingCheckboxTheme") != null
-                    ? json.decode(
-                        widget.control.attrString("headingCheckboxTheme")!)
-                    : null),
-            datarowCheckboxTheme: parseCheckboxTheme(
-                Theme.of(context),
-                widget.control.attrString("dataRowCheckboxTheme") != null
-                    ? json.decode(
-                        widget.control.attrString("dataRowCheckboxTheme")!)
-                    : null),
+            headingCheckboxTheme: widget.control.getCheckboxTheme(
+                "heading_checkbox_theme", Theme.of(context)),
+            datarowCheckboxTheme: widget.control.getCheckboxTheme(
+                "data_row_checkbox_theme", Theme.of(context)),
             showHeadingCheckBox:
-                widget.control.attrBool("showHeadingCheckbox", true)!,
-            columnSpacing: widget.control.attrDouble("columnSpacing"),
-            dataRowColor: parseWidgetStateColor(
-                Theme.of(context), widget.control, "dataRowColor"),
-            dataRowHeight: widget.control.attrDouble("dataRowHeight"),
+                widget.control.getBool("show_heading_checkbox", true)!,
+            columnSpacing: widget.control.getDouble("column_spacing"),
+            dataRowColor: widget.control.getWidgetStateColor(
+               "data_row_color", Theme.of(context)),
+            dataRowHeight: widget.control.getDouble("data_row_height"),
             //dataRowMinHeight: widget.control.attrDouble("dataRowMinHeight"),
             //dataRowMaxHeight: widget.control.attrDouble("dataRowMaxHeight"),
-            dataTextStyle: parseTextStyle(
-                Theme.of(context), widget.control, "dataTextStyle"),
-            headingRowColor: parseWidgetStateColor(
-                Theme.of(context), widget.control, "headingRowColor"),
-            headingRowHeight: widget.control.attrDouble("headingRowHeight"),
-            headingTextStyle: parseTextStyle(
-                Theme.of(context), widget.control, "headingTextStyle"),
-            headingRowDecoration: parseBoxDecoration(Theme.of(context),
-                widget.control, "headingRowDecoration", pageArgs),
-            dividerThickness: widget.control.attrDouble("dividerThickness"),
-            horizontalMargin: widget.control.attrDouble("horizontalMargin"),
+            dataTextStyle: widget.control.getTextStyle(
+                "data_text_style", Theme.of(context)),
+            headingRowColor: widget.control.getWidgetStateColor(
+                "heading_row_color", Theme.of(context)),
+            headingRowHeight: widget.control.getDouble("heading_row_height"),
+            headingTextStyle: widget.control.getTextStyle(
+                "heading_text_style", Theme.of(context)),
+            headingRowDecoration: widget.control.getBoxDecoration(
+                "heading_row_decoration", context),
+            dividerThickness: widget.control.getDouble("divider_thickness"),
+            horizontalMargin: widget.control.getDouble("horizontal_margin"),
             showBottomBorder:
-                widget.control.attrBool("showBottomBorder", false)!,
+                widget.control.getBool("show_bottom_border", false)!,
             showCheckboxColumn:
-                widget.control.attrBool("showCheckboxColumn", false)!,
-            sortAscending: widget.control.attrBool("sortAscending", false)!,
-            sortColumnIndex: widget.control.attrInt("sortColumnIndex"),
-            onSelectAll: widget.control.attrBool("onSelectAll", false)!
+                widget.control.getBool("show_checkbox_column", false)!,
+            sortAscending: widget.control.getBool("sort_ascending", false)!,
+            sortColumnIndex: widget.control.getInt("sort_column_index"),
+            onSelectAll: widget.control.getBool("on_select_all", false)!
                 ? (selected) {
                     widget.backend.triggerControlEvent(
                         widget.control.id,
@@ -305,6 +298,6 @@ class _DataTable2ControlState extends State<DataTable2Control>
       });
     });
 
-    return ConstrainedControl(control: widget.control, child: datatable);
+    return ConstrainedControl(control = widget.control, child = datatable);
   }
 }
