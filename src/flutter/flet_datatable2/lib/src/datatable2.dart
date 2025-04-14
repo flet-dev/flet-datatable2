@@ -7,26 +7,28 @@ import 'package:flet/flet.dart';
 import 'package:flutter/material.dart';
 
 class DataTable2Control extends StatefulWidget {
-  final Control? parent;
+  //final Control? parent;
   final Control control;
-  final List<Control> children;
-  final bool parentDisabled;
-  final FletControlBackend backend;
+  //final List<Control> children;
+  //final bool parentDisabled;
+  //final FletControlBackend backend;
 
-  const DataTable2Control(
-      {super.key,
-      this.parent,
-      required this.control,
-      required this.children,
-      required this.parentDisabled,
-      required this.backend});
+  const DataTable2Control({
+    super.key,
+    //this.parent,
+    required this.control,
+    //required this.children,
+    //required this.parentDisabled,
+    //required this.backend,
+  });
 
   @override
   State<DataTable2Control> createState() => _DataTable2ControlState();
 }
 
 class _DataTable2ControlState extends State<DataTable2Control>
-    with FletStoreMixin {
+//with FletStoreMixin
+{
   //final ScrollController _horizontalController = ScrollController();
   //final ScrollController _controller = ScrollController();
 
@@ -41,7 +43,7 @@ class _DataTable2ControlState extends State<DataTable2Control>
   Widget build(BuildContext context) {
     debugPrint("DataTableControl build: ${widget.control.id}");
 
-    bool tableDisabled = widget.control.isDisabled || widget.parentDisabled;
+    //bool tableDisabled = widget.control.isDisabled || widget.parentDisabled;
 
     ColumnSize? parseSize(String? size, [ColumnSize? defValue]) {
       if (size == null) {
@@ -303,7 +305,6 @@ class _DataTable2ControlState extends State<DataTable2Control>
       });
     });
 
-    return constrainedControl(
-        context, datatable, widget.parent, widget.control);
+    return ConstrainedControl(control: widget.control, child: datatable);
   }
 }
