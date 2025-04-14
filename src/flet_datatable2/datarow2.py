@@ -6,8 +6,9 @@ from typing import Any, List, Optional
 # from flet.core.types import ColorValue, ControlStateValue, OptionalControlEventCallable
 import flet as ft
 
+
 @ft.control("DataRow2")
-class DataRow2(Control):
+class DataRow2(ft.Control):
     """
     Extension of [DataRow](https://flet.dev/docs/controls/datatable#datarow).
 
@@ -37,17 +38,17 @@ class DataRow2(Control):
     # ):
     #     Control.__init__(self, ref=ref, visible=visible, disabled=disabled, data=data)
 
-        # self.cells = cells
-        # self.color = color
-        # self.decoration = decoration
-        # self.specific_row_height = specific_row_height
-        # self.selected = selected
-        # self.on_long_press = on_long_press
-        # self.on_select_changed = on_select_changed
-        # self.on_double_tap = on_double_tap
-        # self.on_secondary_tap = on_secondary_tap
-        # self.on_secondary_tap_down = on_secondary_tap_down
-        # self.on_tap = on_tap
+    # self.cells = cells
+    # self.color = color
+    # self.decoration = decoration
+    # self.specific_row_height = specific_row_height
+    # self.selected = selected
+    # self.on_long_press = on_long_press
+    # self.on_select_changed = on_select_changed
+    # self.on_double_tap = on_double_tap
+    # self.on_secondary_tap = on_secondary_tap
+    # self.on_secondary_tap_down = on_secondary_tap_down
+    # self.on_tap = on_tap
 
     # def _get_control_name(self):
     #     return "datarow2"

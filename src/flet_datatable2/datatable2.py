@@ -1,5 +1,10 @@
 from typing import Any, List, Optional, Union
 
+import flet as ft
+
+from flet_datatable2.datacolumn2 import DataColumn2
+from flet_datatable2.datarow2 import DataRow2
+
 # from flet.core.alignment import Alignment
 # from flet.core.animation import AnimationValue
 # from flet.core.badge import BadgeValue
@@ -28,10 +33,6 @@ from typing import Any, List, Optional, Union
 #     ScaleValue,
 # )
 
-import flet as ft
-
-from flet_datatable2.datacolumn2 import DataColumn2
-from flet_datatable2.datarow2 import DataRow2
 
 @ft.control("DataTable2")
 class DataTable2(ft.ConstrainedControl):
@@ -54,7 +55,7 @@ class DataTable2(ft.ConstrainedControl):
     fixed_top_rows: Optional[int] = None
     fixed_columns_color: Optional[ft.ColorValue] = None
     fixed_corner_color: Optional[ft.ColorValue] = None
-    min_width: OptionalNumber = None
+    min_width: ft.OptionalNumber = None
     sort_ascending: Optional[bool] = None
     show_checkbox_column: Optional[bool] = None
     show_heading_checkbox: Optional[bool] = None
@@ -152,50 +153,50 @@ class DataTable2(ft.ConstrainedControl):
     #         data=data,
     #     )
 
-        # self.columns = columns
-        # self.rows = rows
-        # self.empty = empty
-        # self.fixed_left_columns = fixed_left_columns
-        # self.fixed_top_rows = fixed_top_rows
-        # self.fixed_columns_color = fixed_columns_color
-        # self.fixed_corner_color = fixed_corner_color
-        # self.bottom_margin = bottom_margin
-        # self.lm_ration = lm_ratio
-        # self.sm_ratio = sm_ratio
-        # self.min_width = min_width
-        # self.border = border
-        # self.border_radius = border_radius
-        # self.horizontal_lines = horizontal_lines
-        # self.is_horizontal_scroll_bar_visible = is_horizontal_scroll_bar_visible
-        # self.is_vertical_scroll_bar_visible = is_vertical_scroll_bar_visible
-        # self.vertical_lines = vertical_lines
-        # self.bgcolor = bgcolor
-        # self.gradient = gradient
-        # self.divider_thickness = divider_thickness
-        # self.checkbox_horizontal_margin = checkbox_horizontal_margin
-        # self.checkbox_alignment = checkbox_alignment
-        # self.heading_checkbox_theme = heading_checkbox_theme
-        # self.data_row_checkbox_theme = data_row_checkbox_theme
-        # self.column_spacing = column_spacing
-        # self.data_row_color = data_row_color
-        # # self.data_row_min_height = data_row_min_height
-        # # self.data_row_max_height = data_row_max_height
-        # self.data_row_height = data_row_height
-        # self.data_text_style = data_text_style
-        # self.heading_row_color = heading_row_color
-        # self.heading_row_height = heading_row_height
-        # self.heading_text_style = heading_text_style
-        # self.horizontal_margin = horizontal_margin
-        # self.show_bottom_border = show_bottom_border
-        # self.show_checkbox_column = show_checkbox_column
-        # self.show_heading_checkbox = show_heading_checkbox
-        # self.sort_ascending = sort_ascending
-        # self.sort_column_index = sort_column_index
-        # self.on_select_all = on_select_all
-        # self.clip_behavior = clip_behavior
-        # self.sort_arrow_icon = sort_arrow_icon
-        # self.sort_arrow_animation_duration = sort_arrow_animation_duration
-        # self.heading_row_decoration = heading_row_decoration
+    # self.columns = columns
+    # self.rows = rows
+    # self.empty = empty
+    # self.fixed_left_columns = fixed_left_columns
+    # self.fixed_top_rows = fixed_top_rows
+    # self.fixed_columns_color = fixed_columns_color
+    # self.fixed_corner_color = fixed_corner_color
+    # self.bottom_margin = bottom_margin
+    # self.lm_ration = lm_ratio
+    # self.sm_ratio = sm_ratio
+    # self.min_width = min_width
+    # self.border = border
+    # self.border_radius = border_radius
+    # self.horizontal_lines = horizontal_lines
+    # self.is_horizontal_scroll_bar_visible = is_horizontal_scroll_bar_visible
+    # self.is_vertical_scroll_bar_visible = is_vertical_scroll_bar_visible
+    # self.vertical_lines = vertical_lines
+    # self.bgcolor = bgcolor
+    # self.gradient = gradient
+    # self.divider_thickness = divider_thickness
+    # self.checkbox_horizontal_margin = checkbox_horizontal_margin
+    # self.checkbox_alignment = checkbox_alignment
+    # self.heading_checkbox_theme = heading_checkbox_theme
+    # self.data_row_checkbox_theme = data_row_checkbox_theme
+    # self.column_spacing = column_spacing
+    # self.data_row_color = data_row_color
+    # # self.data_row_min_height = data_row_min_height
+    # # self.data_row_max_height = data_row_max_height
+    # self.data_row_height = data_row_height
+    # self.data_text_style = data_text_style
+    # self.heading_row_color = heading_row_color
+    # self.heading_row_height = heading_row_height
+    # self.heading_text_style = heading_text_style
+    # self.horizontal_margin = horizontal_margin
+    # self.show_bottom_border = show_bottom_border
+    # self.show_checkbox_column = show_checkbox_column
+    # self.show_heading_checkbox = show_heading_checkbox
+    # self.sort_ascending = sort_ascending
+    # self.sort_column_index = sort_column_index
+    # self.on_select_all = on_select_all
+    # self.clip_behavior = clip_behavior
+    # self.sort_arrow_icon = sort_arrow_icon
+    # self.sort_arrow_animation_duration = sort_arrow_animation_duration
+    # self.heading_row_decoration = heading_row_decoration
 
     # def _get_control_name(self):
     #     return "datatable2"

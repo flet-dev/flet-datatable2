@@ -2,12 +2,12 @@ import json
 from enum import Enum
 from typing import Any, Optional
 
+import flet as ft
+
 # from flet.core.control import Control, OptionalNumber, control
 # from flet.core.control_event import ControlEvent
 # from flet.core.event_handler import EventHandler
 # from flet.core.types import MainAxisAlignment, OptionalEventCallable
-
-import flet as ft
 
 
 class Size(Enum):
@@ -29,6 +29,7 @@ class DataColumnSortEvent(ft.ControlEvent):
         self.column_index: int = d.get("i")
         self.ascending: bool = d.get("a")
 
+
 @ft.control("DataColumn2")
 class DataColumn2(ft.Control):
     """Column configuration for a [DataTable2](datatable2.md).
@@ -39,41 +40,13 @@ class DataColumn2(ft.Control):
 
     """
 
-
     label: ft.Control
     size: Optional[Size] = None
     numeric: Optional[bool] = None
-    tooltip: Optional[str] = None
+    # tooltip: Optional[str] = None
     fixed_width: ft.OptionalNumber = None
     heading_row_alignment: Optional[ft.MainAxisAlignment] = None
     on_sort: ft.OptionalEventCallable[ft.DataColumnSortEvent] = None
-    #     #
-    #     # Control
-    #     #
-    #     ref=None,
-    #     visible: Optional[bool] = None,
-    #     disabled: Optional[bool] = None,
-    #     data: Any = None,
-    # ):
-    #     Control.__init__(self, ref=ref, visible=visible, disabled=disabled, data=data)
-
-    #     self.__on_sort = EventHandler(lambda e: DataColumnSortEvent(e))
-    #     self._add_event_handler("sort", self.__on_sort.get_handler())
-
-    #     self.label = label
-    #     self.size = size
-    #     self.fixed_width = fixed_width
-    #     self.numeric = numeric
-    #     self.tooltip = tooltip
-    #     self.heading_row_alignment = heading_row_alignment
-    #     self.on_sort = on_sort
-
-    # def _get_control_name(self):
-    #     return "datacolumn2"
-
-    # def _get_children(self):
-    #     self.__label._set_attr_internal("n", "label")
-    #     return [self.__label]
 
     def before_update(self):
         super().before_update()

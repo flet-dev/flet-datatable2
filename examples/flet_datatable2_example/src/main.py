@@ -30,8 +30,8 @@ def main(page: ft.Page):
     def get_data_columns():
         data_columns = [
             DataColumn2(
+                ft.Text("Name"),
                 size=Size.L,
-                label=ft.Text("Name"),
                 on_sort=sort_column,
                 heading_row_alignment=ft.MainAxisAlignment.START,
             ),
@@ -57,7 +57,7 @@ def main(page: ft.Page):
                 numeric=True,
             ),
             DataColumn2(
-                label=ft.Text("Sodium"),
+                ft.Text("Sodium"),
                 on_sort=sort_column,
                 numeric=True,
             ),
