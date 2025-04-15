@@ -9,7 +9,7 @@ authors = [
 ]
 dependencies = [
   "flet-datatable2",
-  "flet",
+  "flet @ git+https://github.com/flet-dev/flet.git@v1",
 ]
 
 [tool.flet]
@@ -22,7 +22,6 @@ org = "com.mycompany"
 product = "flet-datatable2-example"
 
 # company name to display in about app dialogs
-company = "Flet"
 
 # copyright text to display in about app dialogs
 copyright = "Copyright (C) 2025 by Flet"
