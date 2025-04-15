@@ -9,7 +9,7 @@ authors = [
 ]
 dependencies = [
   "flet-datatable2",
-  "flet @ git+https://github.com/flet-dev/flet.git@v1",
+  "flet",
 ]
 
 [tool.flet]
@@ -31,6 +31,7 @@ path = "src"
 
 [tool.flet.dev_packages]
 flet-datatable2 = "../.." # relative path
+flet = "git+https://github.com/flet-dev/flet.git@v1"
 
 [tool.uv]
 dev-dependencies = [
