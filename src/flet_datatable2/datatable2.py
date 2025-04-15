@@ -1,37 +1,9 @@
-from typing import Any, List, Optional, Union
+from typing import List, Optional
 
 import flet as ft
 
 from flet_datatable2.datacolumn2 import DataColumn2
 from flet_datatable2.datarow2 import DataRow2
-
-# from flet.core.alignment import Alignment
-# from flet.core.animation import AnimationValue
-# from flet.core.badge import BadgeValue
-# from flet.core.border import Border, BorderSide
-# from flet.core.box import BoxDecoration
-# from flet.core.constrained_control import ConstrainedControl
-# from flet.core.control import Control, OptionalNumber
-# from flet.core.gradients import Gradient
-# from flet.core.ref import Ref
-# from flet.core.text_style import TextStyle
-# from flet.core.theme import CheckboxTheme
-# from flet.core.tooltip import TooltipValue
-# from flet.core.types import (
-#     BorderRadiusValue,
-#     ClipBehavior,
-#     ColorEnums,
-#     ColorValue,
-#     ControlStateValue,
-#     DurationValue,
-#     IconEnums,
-#     IconValue,
-#     OffsetValue,
-#     OptionalControlEventCallable,
-#     ResponsiveNumber,
-#     RotateValue,
-#     ScaleValue,
-# )
 
 
 @ft.control("DataTable2")
@@ -43,19 +15,75 @@ class DataTable2(ft.ConstrainedControl):
     [DataRow2](datarow2.md) provides row-level tap event handlers.
     """
 
-    # def __init__(
-    #     self,
     columns: List[DataColumn2]
+    """
+        A list of [DataColumn2](datacolumn2.md) controls describing table columns.
+    """
     rows: Optional[List[DataRow2]] = None
+    """
+        A list of [DataRow2](datarow2.md) controls defining table rows.
+    """
     empty: Optional[ft.Control] = None
+    """
+        **NEW**
+
+        Placeholder control which is displayed whenever the data rows are empty. The widget will be displayed below heading row.
+    """
     bottom_margin: ft.OptionalNumber = None
+    """
+        **NEW**
+
+        If set, the table will have empty space added after the the last row.
+    """
     lm_ratio: ft.OptionalNumber = None
+    """
+        **NEW**
+
+        Determines ratio of Large column's width to Medium column's width. I.e. 2.0 means that Large column is twice wider than Medium column.
+
+        The default value is `1.2`.
+    """
     sm_ratio: ft.OptionalNumber = None
+    """
+        **NEW**
+
+        Determines ratio of Small column's width to Medium column's width. I.e. 0.5 means that Small column is twice narrower than Medium column.
+
+        The default value is `0.67`.
+    """
     fixed_left_columns: Optional[int] = None
+    """
+        **NEW**
+
+        The number of sticky columns fixed at the left side of the table. Check box column (if enabled) is also counted.
+    """
     fixed_top_rows: Optional[int] = None
+    """
+        **NEW**
+
+        The number of sticky rows fixed at the top of the table. The heading row is counted/included.
+        By defult the value is 1 which means header row is fixed.
+        Set to 0 in order to unstick the header, set to >1 in order to fix data rows (i.e. in order to fix both header and the first data row use value of 2).
+    """
     fixed_columns_color: Optional[ft.ColorValue] = None
+    """
+        **NEW**
+
+        Backgound color of the sticky columns fixed via `fixed_left_columns`.
+    """
     fixed_corner_color: Optional[ft.ColorValue] = None
+    """
+        **NEW**
+
+        Backgound color of the top left corner which is fixed when both `fixed_top_rows` and `fixed_left_columns` are greater than 0.
+    """
     min_width: ft.OptionalNumber = None
+    """
+        **NEW**
+
+        If set, the table will stop shrinking below the threshold and provide horizontal scrolling.
+        Useful for the cases with narrow screens (e.g. portrait phone orientation) and lots of columns.
+    """
     sort_ascending: Optional[bool] = None
     show_checkbox_column: Optional[bool] = None
     show_heading_checkbox: Optional[bool] = None
@@ -63,13 +91,33 @@ class DataTable2(ft.ConstrainedControl):
     data_row_checkbox_theme: Optional[ft.CheckboxTheme] = None
     sort_column_index: Optional[int] = None
     sort_arrow_icon: Optional[ft.IconValue] = None
+    """
+        **NEW**
+
+        Icon to be displayed when sorting is applied to a column. If not set, the default icon is `Icons.ARROW_UPWARD`.
+    """
     sort_arrow_animation_duration: Optional[ft.DurationValue] = None
+    """
+        **NEW**
+
+        When changing sort direction an arrow icon in the header is rotated clockwise. The value defines the duration of the rotation animation.
+        If not set, the default animation duration is 150 ms.
+    """
     show_bottom_border: Optional[bool] = None
     is_horizontal_scroll_bar_visible: Optional[bool] = None
     is_vertical_scroll_bar_visible: Optional[bool] = None
     border: Optional[ft.Border] = None
+    """
+        See DataTable [border](https://flet.dev/docs/controls/datatable#border).
+    """
     border_radius: Optional[ft.BorderRadiusValue] = None
+    """
+        See DataTable [border_radius](https://flet.dev/docs/controls/datatable#border_radius).
+    """
     horizontal_lines: Optional[ft.BorderSide] = None
+    """
+        See DataTable [horizontal_lines](https://flet.dev/docs/controls/datatable#horizontal_lines).
+    """
     vertical_lines: Optional[ft.BorderSide] = None
     checkbox_horizontal_margin: ft.OptionalNumber = None
     checkbox_alignment: Optional[ft.Alignment] = None
@@ -95,11 +143,18 @@ class DataTable2(ft.ConstrainedControl):
 
     def before_update(self):
         super().before_update()
+        assert all(
+            isinstance(column, DataColumn2) for column in self.columns
+        ), "columns must contain only DataColumn2 instances"
+        assert all(
+            isinstance(row, DataRow2) for row in self.rows
+        ), "rows must contain only DataRow2 instances"
         visible_columns = list(filter(lambda column: column.visible, self.columns))
         visible_rows = list(filter(lambda row: row.visible, self.rows))
         assert (
             len(visible_columns) > 0
         ), "columns must contain at minimum one visible DataColumn"
+
         assert all(
             len(list(filter(lambda c: c.visible, row.cells))) == len(visible_columns)
             for row in visible_rows
@@ -115,249 +170,6 @@ class DataTable2(ft.ConstrainedControl):
         assert self.sort_column_index is None or (
             0 <= self.sort_column_index < len(visible_columns)
         ), f"sort_column_index must be greater than or equal to 0 and less than the number of columns ({len(visible_columns)})"
-        # self._set_attr_json("border", self.__border)
-        # self._set_attr_json("gradient", self.__gradient)
-        # self._set_attr_json("borderRadius", self.__border_radius)
-        # self._set_attr_json("horizontalLines", self.__horizontal_lines)
-        # self._set_attr_json("verticalLines", self.__vertical_lines)
-        # self._set_attr_json("dataRowColor", self.__data_row_color)
-        # self._set_attr_json("headingRowColor", self.__heading_row_color)
-        # self._set_attr_json("dataTextStyle", self.__data_text_style)
-        # self._set_attr_json("headingTextStyle", self.__heading_text_style)
-        # self._set_attr_json("headingCheckboxTheme", self.__heading_checkbox_theme)
-        # self._set_attr_json("dataRowCheckboxTheme", self.__data_row_checkbox_theme)
-        # self._set_attr_json(
-        #     "sortArrowAnimationDuration", self.__sort_arrow_animation_duration
-        # )
-        # self._set_attr_json("checkboxAlignment", self.__checkbox_alignment)
-        # self._set_attr_json("headingRowDecoration", self.__heading_row_decoration)
-
-    # def _get_children(self):
-    #     children = self.__columns + self.__rows
-
-    #     if isinstance(self.__empty, Control):
-    #         self.__empty._set_attr_internal("n", "empty")
-    #         children.append(self.__empty)
-    #     return children
-
-    # # empty
-    # @property
-    # def empty(self) -> Control:
-    #     """
-    #     **NEW**
-
-    #     Placeholder control which is displayed whenever the data rows are empty. The widget will be displayed below heading row.
-    #     """
-    #     return self.__empty
-
-    # @empty.setter
-    # def empty(self, value: Control):
-    #     self.__empty = value
-
-    # # columns
-    # @property
-    # def columns(self) -> List[DataColumn2]:
-    #     """
-    #     A list of [DataColumn2](datacolumn2.md) controls describing table columns.
-    #     """
-    #     return self.__columns
-
-    # @columns.setter
-    # def columns(self, value: List[DataColumn2]):
-    #     assert all(
-    #         isinstance(column, DataColumn2) for column in value
-    #     ), "columns must contain only DataColumn instances"
-    #     self.__columns = value
-
-    # # rows
-    # @property
-    # def rows(self) -> Optional[List[DataRow2]]:
-    #     """
-    #     A list of [DataRow2](datarow2.md) controls defining table rows.
-    #     """
-    #     return self.__rows
-
-    # @rows.setter
-    # def rows(self, value: Optional[List[DataRow2]]):
-    #     self.__rows = value if value is not None else []
-    #     assert all(
-    #         isinstance(row, DataRow2) for row in self.__rows
-    #     ), "rows must contain only DataRow instances"
-
-    # # fixed_left_columns
-    # @property
-    # def fixed_left_columns(self) -> Optional[int]:
-    #     """
-    #     **NEW**
-
-    #     The number of sticky columns fixed at the left side of the table. Check box column (if enabled) is also counted.
-    #     """
-    #     return self._get_attr("fixedLeftColumns")
-
-    # @fixed_left_columns.setter
-    # def fixed_left_columns(self, value: Optional[int]):
-    #     self._set_attr("fixedLeftColumns", value)
-
-    # # fixed_top_rows
-    # @property
-    # def fixed_top_rows(self) -> Optional[int]:
-    #     """
-    #     **NEW**
-
-    #     The number of sticky rows fixed at the top of the table. The heading row is counted/included.
-    #     By defult the value is 1 which means header row is fixed.
-    #     Set to 0 in order to unstick the header, set to >1 in order to fix data rows (i.e. in order to fix both header and the first data row use value of 2).
-    #     """
-    #     return self._get_attr("fixedTopRows")
-
-    # @fixed_top_rows.setter
-    # def fixed_top_rows(self, value: Optional[int]):
-    #     self._set_attr("fixedTopRows", value)
-
-    # # fixed_columns_color
-    # @property
-    # def fixed_columns_color(self) -> Optional[ColorValue]:
-    #     """
-    #     **NEW**
-
-    #     Backgound color of the sticky columns fixed via `fixed_left_columns`.
-    #     """
-    #     return self.__fixed_columns_color
-
-    # @fixed_columns_color.setter
-    # def fixed_columns_color(self, value: Optional[ColorValue]):
-    #     self.__fixed_columns_color = value
-    #     self._set_enum_attr("fixedColumnsColor", value, ColorEnums)
-
-    # # fixed_corner_color
-    # @property
-    # def fixed_corner_color(self) -> Optional[ColorValue]:
-    #     """
-    #     **NEW**
-
-    #     Backgound color of the top left corner which is fixed when both `fixed_top_rows` and `fixed_left_columns` are greater than 0.
-    #     """
-    #     return self.__fixed_corner_color
-
-    # @fixed_corner_color.setter
-    # def fixed_corner_color(self, value: Optional[ColorValue]):
-    #     self.__fixed_corner_color = value
-    #     self._set_enum_attr("fixedCornerColor", value, ColorEnums)
-
-    # # bottom_margin
-    # @property
-    # def bottom_margin(self) -> OptionalNumber:
-    #     """
-    #     **NEW**
-
-    #     If set, the table will have empty space added after the the last row.
-    #     """
-    #     return self._get_attr("bottomMargin")
-
-    # @bottom_margin.setter
-    # def bottom_margin(self, value: OptionalNumber):
-    #     self._set_attr("bottomMargin", value)
-
-    # # sort_arrow_icon
-    # @property
-    # def sort_arrow_icon(self):
-    #     """
-    #     **NEW**
-
-    #     Icon to be displayed when sorting is applied to a column. If not set, the default icon is `Icons.ARROW_UPWARD`.
-    #     """
-    #     return self.__sort_arrow_icon
-
-    # @sort_arrow_icon.setter
-    # def sort_arrow_icon(self, value):
-    #     self.__sort_arrow_icon = value
-    #     self._set_enum_attr("sortArrowIcon", value, IconEnums)
-
-    # # sort_arrow_animation_duration
-    # @property
-    # def sort_arrow_animation_duration(self) -> Optional[DurationValue]:
-    #     """
-    #     **NEW**
-
-    #     When changing sort direction an arrow icon in the header is rotated clockwise. The value defines the duration of the rotation animation.
-    #     If not set, the default animation duration is 150 ms.
-    #     """
-    #     return self.__sort_arrow_animation_duration
-
-    # @sort_arrow_animation_duration.setter
-    # def sort_arrow_animation_duration(self, value: Optional[DurationValue]):
-    #     self.__sort_arrow_animation_duration = value
-
-    # # lm_ratio
-    # @property
-    # def lm_ratio(self) -> OptionalNumber:
-    #     """
-    #     **NEW**
-
-    #     Determines ratio of Large column's width to Medium column's width. I.e. 2.0 means that Large column is twice wider than Medium column.
-
-    #     The default value is `1.2`.
-    #     """
-    #     return self._get_attr("lmRatio")
-
-    # @lm_ratio.setter
-    # def lm_ratio(self, value: OptionalNumber):
-    #     self._set_attr("lmRatio", value)
-
-    # # sm_ratio
-    # @property
-    # def sm_ratio(self) -> OptionalNumber:
-    #     """
-    #     **NEW**
-
-    #     Determines ratio of Small column's width to Medium column's width. I.e. 0.5 means that Small column is twice narrower than Medium column.
-
-    #     The default value is `0.67`.
-    #     """
-    #     return self._get_attr("smRatio")
-
-    # @sm_ratio.setter
-    # def sm_ratio(self, value: OptionalNumber):
-    #     self._set_attr("smRatio", value)
-
-    # # min_width
-    # @property
-    # def min_width(self) -> OptionalNumber:
-    #     """
-    #     **NEW**
-
-    #     If set, the table will stop shrinking below the threshold and provide horizontal scrolling.
-    #     Useful for the cases with narrow screens (e.g. portrait phone orientation) and lots of columns.
-    #     """
-    #     return self._get_attr("minWidth")
-
-    # @min_width.setter
-    # def min_width(self, value: OptionalNumber):
-    #     self._set_attr("minWidth", value)
-
-    # # border
-    # @property
-    # def border(self) -> Optional[Border]:
-    #     """
-    #     See DataTable [border](https://flet.dev/docs/controls/datatable#border).
-    #     """
-    #     return self.__border
-
-    # @border.setter
-    # def border(self, value: Optional[Border]):
-    #     self.__border = value
-
-    # # border_radius
-    # @property
-    # def border_radius(self) -> Optional[BorderRadiusValue]:
-    #     """
-    #     See DataTable [border_radius](https://flet.dev/docs/controls/datatable#border_radius).
-    #     """
-    #     return self.__border_radius
-
-    # @border_radius.setter
-    # def border_radius(self, value: Optional[BorderRadiusValue]):
-    #     self.__border_radius = value
 
     # # horizontal_lines
     # @property
