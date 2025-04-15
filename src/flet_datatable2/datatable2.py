@@ -16,7 +16,6 @@ class DataTable2(ft.ConstrainedControl):
     By using [DataColumn2](datacolumn2.md) instead of [DataColumn](https://flet.dev/docs/controls/datatable#datacolumn) it is possible to control relative column sizes (setting them to S, M and L).
     [DataRow2](datarow2.md) provides row-level tap event handlers.
 
-
     Attributes:
         bgcolor: See DataTable [bgcolor](https://flet.dev/docs/controls/datatable#bgcolor).
         border: See DataTable [border](https://flet.dev/docs/controls/datatable#border).
