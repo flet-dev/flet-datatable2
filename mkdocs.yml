@@ -6,7 +6,11 @@ theme:
   logo: 'images/logo.svg'
 
 plugins:
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google  # or numpy
 
 nav:
   - Getting Started: index.md

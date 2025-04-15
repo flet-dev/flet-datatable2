@@ -5,28 +5,18 @@ import 'package:flet/flet.dart';
 import 'package:flutter/material.dart';
 
 class DataTable2Control extends StatefulWidget {
-  //final Control? parent;
   final Control control;
-  //final List<Control> children;
-  //final bool parentDisabled;
-  //final FletControlBackend backend;
 
   const DataTable2Control({
     super.key,
-    //this.parent,
     required this.control,
-    //required this.children,
-    //required this.parentDisabled,
-    //required this.backend,
   });
 
   @override
   State<DataTable2Control> createState() => _DataTable2ControlState();
 }
 
-class _DataTable2ControlState extends State<DataTable2Control>
-//with FletStoreMixin
-{
+class _DataTable2ControlState extends State<DataTable2Control> {
   //final ScrollController _horizontalController = ScrollController();
   //final ScrollController _controller = ScrollController();
 
@@ -39,9 +29,7 @@ class _DataTable2ControlState extends State<DataTable2Control>
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("DataTableControl build: ${widget.control.id}");
-
-    //bool tableDisabled = widget.control.isDisabled || widget.parentDisabled;
+    debugPrint("DataTable2Control build: ${widget.control.id}");
 
     ColumnSize? parseSize(String? size, [ColumnSize? defValue]) {
       if (size == null) {
@@ -52,16 +40,6 @@ class _DataTable2ControlState extends State<DataTable2Control>
           defValue;
     }
 
-    // var datatable =
-    //     withControls(widget.children.where((c) => c.isVisible).map((c) => c.id),
-    //         (content, viewModel) {
-    //   var emptyCtrls =
-    //       widget.children.where((c) => c.name == "empty" && c.isVisible);
-    //   Widget? empty = emptyCtrls.isNotEmpty
-    //       ? createControl(
-    //           widget.control, emptyCtrls.first.id, widget.control.isDisabled)
-    //       : null;
-    IconData? sortArrowIcon = widget.control.getIcon("sortArrowIcon");
     var bgColor = widget.control.getString("bgcolor");
     var border = widget.control.getBorder("border", Theme.of(context));
     var borderRadius = widget.control.getBorderRadius("border_radius");
@@ -72,8 +50,6 @@ class _DataTable2ControlState extends State<DataTable2Control>
         widget.control.getBorderSide("vertical_lines", Theme.of(context));
     var defaultDecoration =
         Theme.of(context).dataTableTheme.decoration ?? const BoxDecoration();
-    var checkboxAlignment =
-        widget.control.getAlignment("checkboxAlignment", Alignment.center)!;
 
     BoxDecoration? decoration;
     if (bgColor != null ||
@@ -94,11 +70,6 @@ class _DataTable2ControlState extends State<DataTable2Control>
           verticalInside: verticalLines ?? BorderSide.none);
     }
 
-    Clip clipBehavior =
-        widget.control.getClipBehavior("clip_behavior", Clip.none)!;
-
-    //   return withPageArgs((context, pageArgs) {
-    //return
     var datatable2 = DataTable2(
       bottomMargin: widget.control.getDouble("bottom_margin"),
       minWidth: widget.control.getDouble("minWidth"),
@@ -118,14 +89,16 @@ class _DataTable2ControlState extends State<DataTable2Control>
       fixedCornerColor: widget.control.getColor("fixed_corner_color", context),
       smRatio: widget.control.getDouble("sm_ratio") ?? 0.67,
       lmRatio: widget.control.getDouble("lm_ratio") ?? 1.2,
-      clipBehavior: clipBehavior,
-      sortArrowIcon: sortArrowIcon ?? Icons.arrow_upward,
+      clipBehavior: widget.control.getClipBehavior("clip_behavior", Clip.none)!,
+      sortArrowIcon:
+          widget.control.getIcon("sort_arrow_icon") ?? Icons.arrow_upward,
       sortArrowAnimationDuration:
           widget.control.getDuration("sort_arrow_animation_duration") ??
               Duration(microseconds: 150),
       checkboxHorizontalMargin:
           widget.control.getDouble("checkbox_horizontal_margin"),
-      checkboxAlignment: checkboxAlignment,
+      checkboxAlignment:
+          widget.control.getAlignment("checkboxAlignment", Alignment.center)!,
       headingCheckboxTheme: widget.control
           .getCheckboxTheme("heading_checkbox_theme", Theme.of(context)),
       datarowCheckboxTheme: widget.control
