@@ -4,11 +4,6 @@ from typing import Any, Optional
 
 import flet as ft
 
-# from flet.core.control import Control, OptionalNumber, control
-# from flet.core.control_event import ControlEvent
-# from flet.core.event_handler import EventHandler
-# from flet.core.types import MainAxisAlignment, OptionalEventCallable
-
 
 class Size(Enum):
     """Relative size of a column determines the share of total table width allocated to each individual column.
@@ -38,110 +33,23 @@ class DataColumn2(ft.Control):
 
     Additional to Flet [DataColumn](https://flet.dev/docs/controls/datatable/#datacolumn), adds the capability to set relative column size via size property.
 
+    Attributes:
+        label: See DataColumn [label](https://flet.dev/docs/controls/datatable#label).
+        fixed_width: **NEW!** Defines absolute width of the column in pixels (as opposed to relative `size` used by default).
+        heading_row_alignment: See DataColumn [heading_row_alignment](https://flet.dev/docs/controls/datatable#heading_row_alignment).
+        numeric: See DataColumn [numeric](https://flet.dev/docs/controls/datatable#numeric).
+        on_sort:  See DataColumn [on_sort](https://flet.dev/docs/controls/datatable#on_sort).
+        size: **NEW!** Column sizes are determined based on available width by distributing it to individual columns accounting for their relative sizes. Value is of type `Size` and defaults to `Size.S`.
     """
 
     label: ft.Control
-    size: Optional[Size] = None
-    numeric: Optional[bool] = None
-    # tooltip: Optional[str] = None
     fixed_width: ft.OptionalNumber = None
     heading_row_alignment: Optional[ft.MainAxisAlignment] = None
+    numeric: bool = False
+    size: Optional[Size] = None
+
     on_sort: ft.OptionalEventCallable[ft.DataColumnSortEvent] = None
 
     def before_update(self):
         super().before_update()
         assert self.label.visible, "label must be visible"
-
-    # # label
-    # @property
-    # def label(self) -> Control:
-    #     """
-    #     See DataColumn [label](https://flet.dev/docs/controls/datatable#label).
-    #     """
-    #     return self.__label
-
-    # @label.setter
-    # def label(self, value: Control):
-    #     self.__label = value
-
-    # # size
-    # @property
-    # def size(self) -> Optional[Size]:
-    #     """
-    #     **NEW**
-
-    #     Column sizes are determined based on available width by distributing it to individual columns accounting for their relative sizes.
-
-    #     Value is of type `Size` and defaults to `Size.S`.
-    #     """
-    #     return self.__size
-
-    # @size.setter
-    # def size(self, value: Optional[Size]):
-    #     self.__size = value
-    #     self._set_enum_attr("size", value, Size)
-
-    # numeric
-    # @property
-    # def numeric(self) -> bool:
-    #     """
-    #     See DataColumn [numeric](https://flet.dev/docs/controls/datatable#numeric).
-    #     """
-
-    #     return self._get_attr("numeric", data_type="bool", def_value=False)
-
-    # @numeric.setter
-    # def numeric(self, value: Optional[bool]):
-    #     self._set_attr("numeric", value)
-
-    # # fixed_width
-    # @property
-    # def fixed_width(self) -> OptionalNumber:
-    #     """
-    #     **NEW**
-
-    #     Defines absolute width of the column in pixel (as opposed to relative `size` used by default).
-    #     """
-    #     return self._get_attr("fixedWidth")
-
-    # @fixed_width.setter
-    # def fixed_width(self, value: OptionalNumber):
-    #     self._set_attr("fixedWidth", value)
-
-    # # tooltip
-    # @property
-    # def tooltip(self) -> Optional[str]:
-    #     """
-    #     See DataColumn [tooltip](https://flet.dev/docs/controls/datatable#tooltip).
-    #     """
-    #     return self._get_attr("tooltip")
-
-    # @tooltip.setter
-    # def tooltip(self, value: Optional[str]):
-    #     self._set_attr("tooltip", value)
-
-    # # heading_row_alignment
-    # @property
-    # def heading_row_alignment(self) -> Optional[MainAxisAlignment]:
-    #     """
-    #     See DataColumn [heading_row_alignment](https://flet.dev/docs/controls/datatable#heading_row_alignment).
-    #     """
-    #     return self.__heading_row_alignment
-
-    # @heading_row_alignment.setter
-    # def heading_row_alignment(self, value: Optional[MainAxisAlignment]):
-    #     self.__heading_row_alignment = value
-    #     self._set_enum_attr("headingRowAlignment", value, MainAxisAlignment)
-
-    # # on_sort
-    # @property
-    # def on_sort(self) -> OptionalEventCallable["DataColumnSortEvent"]:
-    #     """
-    #     See DataColumn [on_sort](https://flet.dev/docs/controls/datatable#on_sort).
-    #     """
-    #     return self.__on_sort.handler
-
-    # @on_sort.setter
-    # def on_sort(self, handler: OptionalEventCallable["DataColumnSortEvent"]):
-    #     self.__on_sort.handler = handler
-    #     self._set_attr("onSort", True if handler is not None else None)
