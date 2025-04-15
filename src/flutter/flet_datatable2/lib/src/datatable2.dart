@@ -95,12 +95,12 @@ class _DataTable2ControlState extends State<DataTable2Control>
     }
 
     Clip clipBehavior =
-        widget.control.getClipBehavior("clipBehavior", Clip.none)!;
+        widget.control.getClipBehavior("clip_behavior", Clip.none)!;
 
     //   return withPageArgs((context, pageArgs) {
     //return
     var datatable2 = DataTable2(
-      bottomMargin: widget.control.getDouble("bottomMargin"),
+      bottomMargin: widget.control.getDouble("bottom_margin"),
       minWidth: widget.control.getDouble("minWidth"),
       //horizontalScrollController: _horizontalController,
       //scrollController: _controller,

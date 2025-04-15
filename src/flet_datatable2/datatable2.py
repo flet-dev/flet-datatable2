@@ -8,7 +8,8 @@ from flet_datatable2.datarow2 import DataRow2
 
 @ft.control("DataTable2")
 class DataTable2(ft.ConstrainedControl):
-    """In-place replacement of standard Flet [DataTable](https://flet.dev/docs/controls/datatable).
+    """
+    In-place replacement of standard Flet [DataTable](https://flet.dev/docs/controls/datatable).
 
     Has the header row always fixed and core of the table (with data rows) scrollable and stretching to max width/height of it's container.
     By using [DataColumn2](datacolumn2.md) instead of [DataColumn](https://flet.dev/docs/controls/datatable#datacolumn) it is possible to control relative column sizes (setting them to S, M and L).
@@ -17,8 +18,9 @@ class DataTable2(ft.ConstrainedControl):
 
     columns: List[DataColumn2]
     """
-        A list of [DataColumn2](datacolumn2.md) controls describing table columns.
+    A list of [DataColumn2](datacolumn2.md) controls describing table columns.
     """
+
     rows: Optional[List[DataRow2]] = None
     """
         A list of [DataRow2](datarow2.md) controls defining table rows.
@@ -35,22 +37,22 @@ class DataTable2(ft.ConstrainedControl):
 
         If set, the table will have empty space added after the the last row.
     """
-    lm_ratio: ft.OptionalNumber = None
+    lm_ratio: ft.Number = 1.2
     """
-        **NEW**
+    **NEW**
 
-        Determines ratio of Large column's width to Medium column's width. I.e. 2.0 means that Large column is twice wider than Medium column.
-
-        The default value is `1.2`.
+    Determines ratio of Large column's width to Medium column's width. I.e. 2.0 means that Large column is twice wider than Medium column.
     """
+
     sm_ratio: ft.OptionalNumber = None
     """
-        **NEW**
+    **NEW**
 
-        Determines ratio of Small column's width to Medium column's width. I.e. 0.5 means that Small column is twice narrower than Medium column.
+    Determines ratio of Small column's width to Medium column's width. I.e. 0.5 means that Small column is twice narrower than Medium column.
 
-        The default value is `0.67`.
+    The default value is `0.67`.
     """
+
     fixed_left_columns: Optional[int] = None
     """
         **NEW**
