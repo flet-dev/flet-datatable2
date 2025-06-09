@@ -1,20 +1,20 @@
 [project]
 name = "flet-datatable2"
 version = "0.2.0"
-description = "DataTable2 control for Flet"
+description = "An enhanced DataTable for Flet apps."
 readme = "README.md"
-authors = [{ name = "Flet contributors", email = "hello@flet.dev" }]
-license = "Apache-2.0"
 requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "Flet contributors", email = "hello@flet.dev" }]
 dependencies = [
     "flet",
 ]
 
 [project.urls]
 Homepage = "https://mydomain.dev"
-Documentation = "https://github.com/MyGithubAccount/flet-datatable2"
-Repository = "https://github.com/MyGithubAccount/flet-datatable2"
-Issues = "https://github.com/MyGithubAccount/flet-datatable2/issues"
+Documentation = "https://flet-dev.github.io/flet-datatable2"
+Repository = "https://github.com/flet-dev/flet-datatable2"
+Issues = "https://github.com/flet-dev/flet-datatable2/issues"
 
 [tool.setuptools.package-data]
 "flutter.flet_datatable2" = ["**/*"]
