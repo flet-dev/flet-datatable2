@@ -75,7 +75,8 @@ class DataTable2(ft.ConstrainedControl):
 
     sort_ascending: bool = False
     """
-    Whether the column mentioned in `sort_column_index`, if any, is sorted in ascending order.
+    Whether the column mentioned in [`sort_column_index`][..], 
+    if any, is sorted in ascending order.
 
     If `True`, the order is ascending (meaning the rows with the smallest 
     values for the current sort column are first in the table).
@@ -88,11 +89,12 @@ class DataTable2(ft.ConstrainedControl):
     """
     Whether the control should display checkboxes for selectable rows.
     
-    If `True`, a `Checkbox` will be placed at the beginning of each row that is selectable. 
+    If `True`, a [`Checkbox`](https://flet.dev/docs/controls/checkbox) 
+    will be placed at the beginning of each row that is selectable. 
     However, if `DataRow.on_select_changed` is not set for any row, checkboxes will not 
     be placed, even if this value is `True`.
     
-    If `False`, all rows will not display a [`Checkbox`](https://flet.dev/docs/controls/checkbox).
+    If `False`, all rows will not display a `Checkbox`.
     """
 
     show_heading_checkbox: bool = True
@@ -191,10 +193,10 @@ class DataTable2(ft.ConstrainedControl):
 
     data_row_color: ft.ControlStateValue[ft.ColorValue] = None
     """
-    The background [color](/docs/reference/colors) for the data rows.
+    The background [color](https://flet.dev/docs/reference/colors) for the data rows.
 
     The effective background color can be made to depend on the 
-    [`ControlState`](/docs/reference/types/controlstate) state,
+    [`ControlState`](https://flet.dev/docs/reference/types/controlstate) state,
     i.e. if the row is selected, pressed, hovered, focused, disabled or enabled. 
     The color is painted as an overlay to the row. 
     
@@ -250,7 +252,7 @@ class DataTable2(ft.ConstrainedControl):
 
     heading_text_style: Optional[ft.TextStyle] = None
     """
-    See DataTable [heading_text_style](https://flet.dev/docs/controls/datatable#heading_text_style).
+    The text style for the heading row.
     """
 
     heading_row_decoration: Optional[ft.BoxDecoration] = None
@@ -260,7 +262,11 @@ class DataTable2(ft.ConstrainedControl):
 
     horizontal_margin: ft.OptionalNumber = None
     """
-    See DataTable [horizontal_margin](https://flet.dev/docs/controls/datatable#horizontal_margin).
+    The horizontal margin between the edges of the table and the content 
+    in the first and last cells of each row.
+
+    When a checkbox is displayed, it is also the margin between the 
+    checkbox the content in the first data column.
     """
 
     clip_behavior: ft.ClipBehavior = ft.ClipBehavior.NONE
@@ -273,11 +279,11 @@ class DataTable2(ft.ConstrainedControl):
     Invoked when the user selects or unselects every row, 
     using the checkbox in the heading row.
 
-    If this is `None`, then the `DataRow.on_select_change` 
+    If this is `None`, then the [`DataRow.on_select_change`]() 
     callback of every row in the table is invoked appropriately instead.
     
     To control whether a particular row is selectable or not, 
-    see [`DataRow.on_select_change`][(p).datarow2.]. 
+    see [`DataRow2.on_select_change`][datarow2.md]. 
     This callback is only relevant if any row is selectable.
     """
 

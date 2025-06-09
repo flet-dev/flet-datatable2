@@ -3,7 +3,7 @@ import logging
 import flet as ft
 from data import desserts
 
-from flet_datatable2 import DataColumn2, DataRow2, DataTable2, Size
+from flet_datatable2 import DataColumn2, DataRow2, DataTable2, DataColumnSize
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -31,7 +31,7 @@ def main(page: ft.Page):
         data_columns = [
             DataColumn2(
                 ft.Text("Name"),
-                size=Size.L,
+                size=DataColumnSize.L,
                 on_sort=sort_column,
                 heading_row_alignment=ft.MainAxisAlignment.START,
             ),
@@ -80,7 +80,7 @@ def main(page: ft.Page):
             data_rows.append(
                 DataRow2(
                     specific_row_height=50,
-                    on_select_changed=select_row,
+                    on_select_change=select_row,
                     cells=[
                         ft.DataCell(content=ft.Text(dessert.name)),
                         ft.DataCell(content=ft.Text(dessert.calories)),

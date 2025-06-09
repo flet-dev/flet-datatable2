@@ -1,8 +1,7 @@
-from dataclasses import dataclass
-from enum import Enum
 from typing import Optional
 
 import flet as ft
+from .types import DataColumnSize
 
 __all__ = ["DataColumn2"]
 
@@ -10,11 +9,12 @@ __all__ = ["DataColumn2"]
 @ft.control("DataColumn2")
 class DataColumn2(ft.Control):
     """
-    Column configuration for a [DataTable2](datatable2.md).
+    Column configuration for a [`DataTable2`](datatable2.md).
 
     One column configuration must be provided for each column to display in the table.
 
-    Additional to Flet [DataColumn](https://flet.dev/docs/controls/datatable/#datacolumn), adds the capability to set relative column size via size property.
+    Extends Flet [`DataColumn`](https://flet.dev/docs/controls/datatable/#datacolumn),
+    adds the capability to set relative column size via size property.
     """
 
     label: ft.Control
@@ -27,7 +27,7 @@ class DataColumn2(ft.Control):
 
     fixed_width: ft.OptionalNumber = None
     """
-    Defines absolute width of the column in pixels (as opposed to relative `size` used by default).
+    Defines absolute width of the column in pixels (as opposed to relative [`size`][..] used by default).
     """
 
     heading_row_alignment: Optional[ft.MainAxisAlignment] = None
@@ -42,9 +42,10 @@ class DataColumn2(ft.Control):
     The contents of cells of columns containing numeric data are right-aligned.
     """
 
-    size: Optional[Size] = None
+    size: Optional[DataColumnSize] = DataColumnSize.S
     """
-    Column sizes are determined based on available width by distributing it to individual columns accounting for their relative sizes. Value is of type `Size` and defaults to `Size.S`.
+    Column sizes are determined based on available width by distributing 
+    it to individual columns accounting for their relative sizes. 
     """
 
     on_sort: ft.OptionalEventCallable[ft.DataColumnSortEvent] = None
