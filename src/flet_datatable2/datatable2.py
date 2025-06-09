@@ -3,115 +3,283 @@ from typing import List, Optional
 
 import flet as ft
 
-from flet_datatable2.datacolumn2 import DataColumn2
-from flet_datatable2.datarow2 import DataRow2
+from .datacolumn2 import DataColumn2
+from .datarow2 import DataRow2
 
+__all__ = ["DataTable2"]
 
 @ft.control("DataTable2")
 class DataTable2(ft.ConstrainedControl):
     """
-    In-place replacement of standard Flet [DataTable](https://flet.dev/docs/controls/datatable).
+    Extends [DataTable](https://flet.dev/docs/controls/datatable).
 
-    Has the header row always fixed and core of the table (with data rows) scrollable and stretching to max width/height of it's container.
-    By using [DataColumn2](datacolumn2.md) instead of [DataColumn](https://flet.dev/docs/controls/datatable#datacolumn) it is possible to control relative column sizes (setting them to S, M and L).
-    [DataRow2](datarow2.md) provides row-level tap event handlers.
-
-    Attributes:
-        bgcolor: See DataTable [bgcolor](https://flet.dev/docs/controls/datatable#bgcolor).
-        border: See DataTable [border](https://flet.dev/docs/controls/datatable#border).
-        border_radius: See DataTable [border_radius](https://flet.dev/docs/controls/datatable#border_radius).
-        bottom_margin: **NEW!** If set, the table will have empty space added after the the last row.
-        checkbox_alignment: **NEW!** Alignment of the checkbox if it is displayed. Defaults to `alignment.center`.
-        checkbox_horizontal_margin: See DataTable [checkbox_horizontal_margin](https://flet.dev/docs/controls/datatable#checkbox_horizontal_margin).
-        clip_behavior: See DataTable [clip_behavior](https://flet.dev/docs/controls/datatable#clip_behavior).
-        column_spacing: See DataTable [column_spacing](https://flet.dev/docs/controls/datatable#column_spacing).
-        columns: A list of [DataColumn2](datacolumn2.md) controls describing table columns.
-        data_row_checkbox_theme: **NEW!**  Overrides theme of the checkboxes that are displayed in the checkbox column in each data row (if checkboxes are enabled).
-        data_row_color: See DataTable [data_row_color](https://flet.dev/docs/controls/datatable#data_row_color).
-        data_row_height: **NEW!** The height of each row (excluding the row that contains column headings). Note that, unlike in Flet [DataTable](https://flet.dev/docs/controls/datatable), there's no capability to define min/max height of a row. This is an implementation tradeoff making it possible to have performant sticky columns.
-        data_text_style: See DataTable [data_text_style](https://flet.dev/docs/controls/datatable#data_text_style).
-        divider_thickness: See DataTable [divider_thickness](https://flet.dev/docs/controls/datatable#divider_thickness).
-        empty: **NEW!** Placeholder control which is displayed whenever the data rows are empty. The widget will be displayed below heading row.
-        fixed_columns_color: **NEW!** Backgound color of the sticky columns fixed via `fixed_left_columns`.
-        fixed_corner_color: **NEW!** Backgound color of the top left corner which is fixed when both `fixed_top_rows` and `fixed_left_columns` are greater than 0.
-        fixed_left_columns: **NEW!** The number of sticky columns fixed at the left side of the table. Check box column (if enabled) is also counted. Defaults to 0.
-        fixed_top_rows: **NEW!** The number of sticky rows fixed at the top of the table. The heading row is counted/included. By defult the value is 1 which means header row is fixed. Set to 0 in order to unstick the header, set to >1 in order to fix data rows (i.e. in order to fix both header and the first data row use value of 2).
-        gradient: See DataTable [gradient](https://flet.dev/docs/controls/datatable#gradient).
-        heading_checkbox_theme: **NEW!** Overrides theme of the checkbox that is displayed in the top left corner of the heading (if checkboxes are enabled).
-        heading_row_color: See DataTable [heading_row_color](https://flet.dev/docs/controls/datatable#heading_row_color).
-        heading_row_decoration: **NEW!** Decoration to be applied to the heading row. When both `heading_row_color` and 'heading_row_decoration' are provided:`heading_row_decoration` takes precedence if there're 0 or 1 fixed rows; `headeing_row_color` is applied to fixed top starting from the second row; when there're both fixed top rows and fixed left columns with `fixed_corner_color` provided, this decoration overrides top left corner cell color.
-        heading_row_height: See DataTable [heading_row_height](https://flet.dev/docs/controls/datatable#heading_row_height).
-        heading_text_style: See DataTable [heading_text_style](https://flet.dev/docs/controls/datatable#heading_text_style).
-        horizontal_lines: See DataTable [horizontal_lines](https://flet.dev/docs/controls/datatable#horizontal_lines).
-        horizontal_margin: See DataTable [horizontal_margin](https://flet.dev/docs/controls/datatable#horizontal_margin).
-        is_horizontal_scroll_bar_visible: **NEW!** Determines whether the horizontal scroll bar is visible.
-        is_vertical_scroll_bar_visible: **NEW!** Determines whether the vertical scroll bar is visible.
-        lm_ratio: **NEW!** Determines ratio of `Large` column's width to `Medium` column's width. I.e. `2.0` means that `Large` column is twice wider than `Medium` column. Defaults to `1.2`.
-        min_width: **NEW!** If set, the table will stop shrinking below the threshold and provide horizontal scrolling. Useful for the cases with narrow screens (e.g. portrait phone orientation) and lots of columns.
-        on_select_all: See DataTable [on_select_all](https://flet.dev/docs/controls/datatable#on_select_all).
-        rows: A list of [DataRow2](datarow2.md) controls defining table rows.
-        show_bottom_border: See DataTable [show_bottom_border](https://flet.dev/docs/controls/datatable#show_bottom_border).
-        show_checkbox_column: See DataTable [show_checkbox_column](https://flet.dev/docs/controls/datatable#show_checkbox_column).
-        show_heading_checkbox: **NEW!** Whether to display heading checkbox or not, if the checkbox column is present. Defaults to True.
-        sm_ratio: **NEW!** Determines ratio of `Small` column's width to `Medium` column's width. I.e. `0.5` means that `Small` column is twice narrower than `Medium` column. Defaults to `0.67`.
-        sort_arrow_animation_duration: **NEW!** When changing sort direction an arrow icon in the header is rotated clockwise. The value defines the duration of the rotation animation. Defaults to 150 milliseconds.
-        sort_arrow_icon: **NEW!** Icon to be displayed when sorting is applied to a column. Defaults to `Icons.ARROW_UPWARD`.
-        sort_ascending: See DataTable [sort_ascending](https://flet.dev/docs/controls/datatable#sort_ascending).
-        sort_column_index: See DataTable [sort_column_index](https://flet.dev/docs/controls/datatable#sort_column_index).
-        vertical_lines: See DataTable [vertical_lines](https://flet.dev/docs/controls/datatable#vertical_lines).
-
-
-
+    Provides sticky header row, scrollable data rows,
+    and additional layout flexibility with [`DataColumn2`][(p).datacolumn2.]
+    and [`DataRow2`][(p).datarow2.].
     """
 
     columns: List[DataColumn2]
+    """
+    A list of [`DataColumn2`][(p).datacolumn2.] controls describing table columns.
+    """
+
     rows: Optional[List[DataRow2]] = None
+    """
+    A list of [`DataRow2`][(p).datarow2.] controls defining table rows.
+    """
+
     empty: Optional[ft.Control] = None
+    """
+    Placeholder control shown when there are no data rows.
+    """
+
     bottom_margin: ft.OptionalNumber = None
+    """
+    Adds space after the last row if set.
+    """
+
     lm_ratio: ft.Number = 1.2
+    """
+    Ratio of Large column width to Medium.
+    """
+
     sm_ratio: ft.Number = 0.67
+    """
+    Ratio of Small column width to Medium.
+    """
+
     fixed_left_columns: int = 0
+    """
+    Number of sticky columns on the left. Includes checkbox column, if present.
+    """
+
     fixed_top_rows: int = 1
+    """
+    Number of sticky rows from the top. Includes heading row by default.
+    """
+
     fixed_columns_color: Optional[ft.ColorValue] = None
+    """
+    Background color for sticky left columns.
+    """
+
     fixed_corner_color: Optional[ft.ColorValue] = None
+    """
+    Background color of the fixed top-left corner cell.
+    """
+
     min_width: ft.OptionalNumber = None
+    """
+    Minimum table width before horizontal scrolling kicks in.
+    """
+
     sort_ascending: bool = False
+    """
+    Whether the column mentioned in `sort_column_index`, if any, is sorted in ascending order.
+
+    If `True`, the order is ascending (meaning the rows with the smallest 
+    values for the current sort column are first in the table).
+    
+    If `False`, the order is descending (meaning the rows with the smallest 
+    values for the current sort column are last in the table).
+    """
+
     show_checkbox_column: bool = False
+    """
+    Whether the control should display checkboxes for selectable rows.
+    
+    If `True`, a `Checkbox` will be placed at the beginning of each row that is selectable. 
+    However, if `DataRow.on_select_changed` is not set for any row, checkboxes will not 
+    be placed, even if this value is `True`.
+    
+    If `False`, all rows will not display a [`Checkbox`](https://flet.dev/docs/controls/checkbox).
+    """
+
     show_heading_checkbox: bool = True
+    """
+    Controls visibility of the heading checkbox.
+    """
+
     heading_checkbox_theme: Optional[ft.CheckboxTheme] = None
+    """
+    Overrides theme of the heading checkbox.
+    """
+
     data_row_checkbox_theme: Optional[ft.CheckboxTheme] = None
+    """
+    Overrides theme of checkboxes in each data row.
+    """
+
     sort_column_index: Optional[int] = None
+    """
+    The current primary sort key's column.
+
+    If specified, indicates that the indicated column is the column by which the data is sorted. 
+    The number must correspond to the index of the relevant column in `columns`.
+    
+    Setting this will cause the relevant column to have a sort indicator displayed.
+    
+    When this is `None`, it implies that the table's sort order does not correspond to any of the columns.
+    """
+
     sort_arrow_icon: ft.IconValue = ft.Icons.ARROW_UPWARD
+    """
+    Icon shown when sorting is applied.
+    """
+
     sort_arrow_animation_duration: ft.DurationValue = field(
         default_factory=lambda: ft.Duration(milliseconds=150)
     )
+    """
+    Duration of sort arrow animation in milliseconds.
+    """
+
     show_bottom_border: bool = False
+    """
+    Whether a border at the bottom of the table is displayed.
+
+    By default, a border is not shown at the bottom to 
+    allow for a border around the table defined by decoration.
+    """
+
     is_horizontal_scroll_bar_visible: Optional[bool] = None
+    """
+    Determines visibility of the horizontal scrollbar.
+    """
+
     is_vertical_scroll_bar_visible: Optional[bool] = None
+    """
+    Determines visibility of the vertical scrollbar.
+    """
+
     border: Optional[ft.Border] = None
+    """
+    The border around the table.
+    """
+
     border_radius: Optional[ft.BorderRadiusValue] = None
+    """
+    The border radius of the table.
+    """
+
     horizontal_lines: Optional[ft.BorderSide] = None
+    """
+    Set the [color](https://flet.dev/docs/reference/colors) and width of horizontal lines between rows.
+    """
+
     vertical_lines: Optional[ft.BorderSide] = None
+    """
+    Set the [color](https://flet.dev/docs/reference/colors) and width of vertical lines between columns.
+    """
+
     checkbox_horizontal_margin: ft.OptionalNumber = None
+    """
+    Horizontal margin around the checkbox, if it is displayed.
+    """
+
     checkbox_alignment: ft.Alignment = field(
-        default_factory=lambda: ft.alignment.center
+        default_factory=lambda: ft.Alignment.center()
     )
+    """
+    Alignment of the checkbox.
+    """
+
     column_spacing: ft.OptionalNumber = None
+    """
+    The horizontal margin between the contents of each data column.
+    """
+
     data_row_color: ft.ControlStateValue[ft.ColorValue] = None
+    """
+    The background [color](/docs/reference/colors) for the data rows.
+
+    The effective background color can be made to depend on the 
+    [`ControlState`](/docs/reference/types/controlstate) state,
+    i.e. if the row is selected, pressed, hovered, focused, disabled or enabled. 
+    The color is painted as an overlay to the row. 
+    
+    To make sure that the row's InkWell is visible (when pressed, hovered and focused), 
+    it is recommended to use a translucent background color.
+    """
+
     data_row_height: ft.OptionalNumber = None
-    # data_row_min_height: OptionalNumber = None,
-    # data_row_max_height: OptionalNumber = None,
+    """
+    Height of each data row. Unlike `DataTable`, min/max height is not supported.
+    """
+
     data_text_style: Optional[ft.TextStyle] = None
+    """
+    The text style for data rows.
+    """
+
     bgcolor: Optional[ft.ColorValue] = None
+    """
+    The background [color](https://flet.dev/docs/reference/colors) for the table.
+    """
+
     gradient: Optional[ft.Gradient] = None
+    """
+    The background gradient for the table.
+    """
+
     divider_thickness: ft.OptionalNumber = None
+    """
+    The width of the divider that appears between rows. 
+    
+    Note:
+        Must be greater than or equal to zero.
+    """
+
     heading_row_color: ft.ControlStateValue[ft.ColorValue] = None
+    """
+    The background [color](https://flet.dev/docs/reference/colors) for the heading row.
+
+    The effective background color can be made to depend on the 
+    [`ControlState`](https://flet.dev/docs/reference/types/controlstate) state,
+    i.e. if the row is pressed, hovered, focused when sorted. The color is 
+    painted as an overlay to the row. 
+    
+    To make sure that the row's InkWell is visible (when pressed, hovered and focused), 
+    it is recommended to use a translucent color.
+    """
+
     heading_row_height: ft.OptionalNumber = None
+    """
+    The height of the heading row.
+    """
+
     heading_text_style: Optional[ft.TextStyle] = None
+    """
+    See DataTable [heading_text_style](https://flet.dev/docs/controls/datatable#heading_text_style).
+    """
+
     heading_row_decoration: Optional[ft.BoxDecoration] = None
+    """
+    Decoration for the heading row. Overrides color if applied.
+    """
+
     horizontal_margin: ft.OptionalNumber = None
-    clip_behavior: ft.ClipBehavior = field(default_factory=lambda: ft.ClipBehavior.NONE)
+    """
+    See DataTable [horizontal_margin](https://flet.dev/docs/controls/datatable#horizontal_margin).
+    """
+
+    clip_behavior: ft.ClipBehavior = ft.ClipBehavior.NONE
+    """
+    The content will be clipped (or not) according to this option. 
+    """
+
     on_select_all: ft.OptionalControlEventCallable = None
+    """
+    Invoked when the user selects or unselects every row, 
+    using the checkbox in the heading row.
+
+    If this is `None`, then the `DataRow.on_select_change` 
+    callback of every row in the table is invoked appropriately instead.
+    
+    To control whether a particular row is selectable or not, 
+    see [`DataRow.on_select_change`][(p).datarow2.]. 
+    This callback is only relevant if any row is selectable.
+    """
 
     def __contains__(self, item):
         return item in self.columns or item in self.rows

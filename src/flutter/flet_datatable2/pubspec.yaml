@@ -3,13 +3,14 @@ description: Flet DataTable2 control
 repository: https://github.com/flet-dev/flet-datatable2/src/flutter/flet_datatable2
 version: 0.1.0
 homepage: https://github.com/flet-dev/flet-datatable2
+publish_to: 'none'
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
-  data_table_2: ^2.5.18
+  data_table_2: ^2.6.0
   # flet: 0.26.0
   flet:
     git:

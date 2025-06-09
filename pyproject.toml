@@ -1,12 +1,11 @@
 [project]
 name = "flet-datatable2"
-version = "0.1.0"
+version = "0.2.0"
 description = "DataTable2 control for Flet"
 readme = "README.md"
-requires-python = ">=3.9"
-authors = [
-    { name = "Flet contributors", email = "you@example.com" }
-]
+authors = [{ name = "Flet contributors", email = "hello@flet.dev" }]
+license = "Apache-2.0"
+requires-python = ">=3.10"
 dependencies = [
     "flet",
 ]
@@ -20,20 +19,24 @@ Issues = "https://github.com/MyGithubAccount/flet-datatable2/issues"
 [tool.setuptools.package-data]
 "flutter.flet_datatable2" = ["**/*"]
 
-[tool.uv]
-dev-dependencies = [
-    "flet",
-    "flet-cli",
-    "flet-desktop",
-    "mkdocs", 
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+]
+docs = [
+    "mkdocs",
     "mkdocs-material",
-    "mkdocstrings[python]"
+    "mkdocstrings[python]",
+    "mkdocstrings-python-xref",
+    "mike",
+    "markdown>=3.6",
+    "pymdown-extensions",
+    "mkdocs-glightbox",
+    "pygments>=2.16",
 ]
 
 [tool.uv.sources]
-flet = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet", rev = "v1" }
-flet-cli = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet-cli", rev = "v1" }
-flet-desktop = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet-desktop", rev = "v1" }
+# flet = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet", rev = "v1" }
 
 [tool.setuptools]
 license-files = []
