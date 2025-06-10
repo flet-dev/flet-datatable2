@@ -1,4 +1,5 @@
 import logging
+import os
 
 import flet as ft
 from data import desserts
@@ -6,6 +7,7 @@ from data import desserts
 from flet_datatable2 import DataColumn2, DataRow2, DataTable2, Size
 
 logging.basicConfig(level=logging.DEBUG)
+os.environ["FLET_PLATFORM"] = "macos"
 
 
 def main(page: ft.Page):
@@ -13,19 +15,26 @@ def main(page: ft.Page):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     def select_row(e):
+        print("on_select_row")
         e.control.selected = not e.control.selected
         e.control.update()
 
-    def sort_column(e):
-        dt.sort_column_index = e.column_index
-        dt.sort_ascending = e.ascending
-        sorted_desserts = sorted(
-            desserts,
-            key=lambda d: getattr(d, e.control.label.value.lower()),
-            reverse=not dt.sort_ascending,
-        )
-        dt.rows = get_data_rows(sorted_desserts)
-        dt.update()
+    # def sort_column(e):
+    #     print("on_sort")
+    #     #dt.sort_column_index = e.column_index
+    #     # dt.sort_ascending = e.ascending
+    #     # sorted_desserts = sorted(
+    #     #     desserts,
+    #     #     key=lambda d: getattr(d, e.control.label.value.lower()),
+    #     #     reverse=not dt.sort_ascending,
+    #     # )
+    #     # dt.rows = get_data_rows(sorted_desserts)
+    #     # dt.update()
+    def sort_column(e: ft.DataColumnSortEvent):
+        print(f"Sorting column {e.column_index}, ascending={e.ascending}")
+    
+    def all_selected(e):
+        print("All selected")
 
     def get_data_columns():
         data_columns = [
@@ -105,10 +114,11 @@ def main(page: ft.Page):
             sort_ascending=True,
             bottom_margin=10,
             min_width=600,
+            on_select_all=all_selected,
             columns=get_data_columns(),
             rows=get_data_rows(desserts),
         ),
     )
 
-
-ft.app(main)
+ft.run(main, view=ft.AppView.FLET_APP, port=8550)
+# ft.app(main)

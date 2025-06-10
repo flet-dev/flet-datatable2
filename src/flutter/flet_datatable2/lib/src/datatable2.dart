@@ -149,6 +149,10 @@ class _DataTable2ControlState extends State<DataTable2Control> {
                         "sort", {"i": columnIndex, "a": ascending});
                   }
                 : null,
+            //},
+            // onSort: (columnIndex, ascending) {
+            //   column.triggerEvent("sort", {"i": columnIndex, "a": ascending});
+            // },
             label: column.buildWidget("label")!);
       }).toList(),
       rows: widget.control.children("rows").map((row) {

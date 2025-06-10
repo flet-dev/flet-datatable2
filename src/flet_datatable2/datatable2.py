@@ -94,7 +94,7 @@ class DataTable2(ft.ConstrainedControl):
     vertical_lines: Optional[ft.BorderSide] = None
     checkbox_horizontal_margin: ft.OptionalNumber = None
     checkbox_alignment: ft.Alignment = field(
-        default_factory=lambda: ft.alignment.center
+        default_factory=lambda: ft.Alignment.center()
     )
     column_spacing: ft.OptionalNumber = None
     data_row_color: ft.ControlStateValue[ft.ColorValue] = None
