@@ -1,9 +1,13 @@
 # flet-datatable2
 
-An enhanced DataTable for Flet apps.
-It extends Flet’s built-in DataTable with additional functionality such as sticky headers, fixed top rows, and fixed left columns, while retaining all core features of the original.
+[![pypi](https://img.shields.io/pypi/v/flet-datatable2.svg)](https://pypi.python.org/pypi/flet-datatable2)
+[![downloads](https://static.pepy.tech/badge/flet-datatable2/month)](https://pepy.tech/project/flet-datatable2)
+[![license](https://img.shields.io/github/license/flet-dev/flet-datatable2.svg)](https://github.com/flet-dev/flet-datatable2/blob/main/LICENSE)
 
-It is based on [DataTable2](https://pub.dev/packages/data_table_2) Flutter package.
+An enhanced DataTable for Flet apps that builds on the built-in component by adding sticky headers,
+fixed top rows, and fixed left columns while preserving all core features.
+
+It is based on [data_table_2](https://pub.dev/packages/data_table_2) Flutter package.
 
 ## Platform Support
 
@@ -25,7 +29,7 @@ Add dependency to `pyproject.toml` of your Flet app:
 ```
 dependencies = [
   "flet-datatable2 @ git+https://github.com/flet-dev/flet_datatable2.git",
-  "flet>=0.27.4",
+  "flet",
 ]
 ```
 

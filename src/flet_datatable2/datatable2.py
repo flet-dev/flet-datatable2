@@ -1,5 +1,5 @@
 from dataclasses import field
-from typing import List, Optional
+from typing import List, Optional, Union
 
 import flet as ft
 
@@ -9,7 +9,7 @@ from .datarow2 import DataRow2
 __all__ = ["DataTable2"]
 
 @ft.control("DataTable2")
-class DataTable2(ft.ConstrainedControl):
+class DataTable2(ft.DataTable):
     """
     Extends [DataTable](https://flet.dev/docs/controls/datatable).
 
@@ -18,14 +18,14 @@ class DataTable2(ft.ConstrainedControl):
     and [`DataRow2`][(p).datarow2.].
     """
 
-    columns: List[DataColumn2]
+    columns: list[Union[DataColumn2, ft.DataColumn]]
     """
-    A list of [`DataColumn2`][(p).datacolumn2.] controls describing table columns.
+    A list of table columns.
     """
 
-    rows: Optional[List[DataRow2]] = None
+    rows: list[Union[ft.DataRow, DataRow2]] = field(default_factory=list)
     """
-    A list of [`DataRow2`][(p).datarow2.] controls defining table rows.
+    A list of table rows.
     """
 
     empty: Optional[ft.Control] = None
@@ -68,33 +68,14 @@ class DataTable2(ft.ConstrainedControl):
     Background color of the fixed top-left corner cell.
     """
 
+    sort_arrow_icon_color: Optional[ft.ColorValue] = None
+    """
+    When set always overrides/preceeds default arrow icon color.
+    """
+
     min_width: ft.OptionalNumber = None
     """
     Minimum table width before horizontal scrolling kicks in.
-    """
-
-    sort_ascending: bool = False
-    """
-    Whether the column mentioned in [`sort_column_index`][..], 
-    if any, is sorted in ascending order.
-
-    If `True`, the order is ascending (meaning the rows with the smallest 
-    values for the current sort column are first in the table).
-    
-    If `False`, the order is descending (meaning the rows with the smallest 
-    values for the current sort column are last in the table).
-    """
-
-    show_checkbox_column: bool = False
-    """
-    Whether the control should display checkboxes for selectable rows.
-    
-    If `True`, a [`Checkbox`](https://flet.dev/docs/controls/checkbox) 
-    will be placed at the beginning of each row that is selectable. 
-    However, if `DataRow.on_select_changed` is not set for any row, checkboxes will not 
-    be placed, even if this value is `True`.
-    
-    If `False`, all rows will not display a `Checkbox`.
     """
 
     show_heading_checkbox: bool = True
@@ -112,18 +93,6 @@ class DataTable2(ft.ConstrainedControl):
     Overrides theme of checkboxes in each data row.
     """
 
-    sort_column_index: Optional[int] = None
-    """
-    The current primary sort key's column.
-
-    If specified, indicates that the indicated column is the column by which the data is sorted. 
-    The number must correspond to the index of the relevant column in `columns`.
-    
-    Setting this will cause the relevant column to have a sort indicator displayed.
-    
-    When this is `None`, it implies that the table's sort order does not correspond to any of the columns.
-    """
-
     sort_arrow_icon: ft.IconValue = ft.Icons.ARROW_UPWARD
     """
     Icon shown when sorting is applied.
@@ -136,47 +105,14 @@ class DataTable2(ft.ConstrainedControl):
     Duration of sort arrow animation in milliseconds.
     """
 
-    show_bottom_border: bool = False
-    """
-    Whether a border at the bottom of the table is displayed.
-
-    By default, a border is not shown at the bottom to 
-    allow for a border around the table defined by decoration.
-    """
-
-    is_horizontal_scroll_bar_visible: Optional[bool] = None
+    visible_horizontal_scroll_bar: Optional[bool] = None
     """
     Determines visibility of the horizontal scrollbar.
     """
 
-    is_vertical_scroll_bar_visible: Optional[bool] = None
+    visible_vertical_scroll_bar: Optional[bool] = None
     """
     Determines visibility of the vertical scrollbar.
-    """
-
-    border: Optional[ft.Border] = None
-    """
-    The border around the table.
-    """
-
-    border_radius: Optional[ft.BorderRadiusValue] = None
-    """
-    The border radius of the table.
-    """
-
-    horizontal_lines: Optional[ft.BorderSide] = None
-    """
-    Set the [color](https://flet.dev/docs/reference/colors) and width of horizontal lines between rows.
-    """
-
-    vertical_lines: Optional[ft.BorderSide] = None
-    """
-    Set the [color](https://flet.dev/docs/reference/colors) and width of vertical lines between columns.
-    """
-
-    checkbox_horizontal_margin: ft.OptionalNumber = None
-    """
-    Horizontal margin around the checkbox, if it is displayed.
     """
 
     checkbox_alignment: ft.Alignment = field(
@@ -186,50 +122,13 @@ class DataTable2(ft.ConstrainedControl):
     Alignment of the checkbox.
     """
 
-    column_spacing: ft.OptionalNumber = None
-    """
-    The horizontal margin between the contents of each data column.
-    """
-
-    data_row_color: ft.ControlStateValue[ft.ColorValue] = None
-    """
-    The background [color](https://flet.dev/docs/reference/colors) for the data rows.
-
-    The effective background color can be made to depend on the 
-    [`ControlState`](https://flet.dev/docs/reference/types/controlstate) state,
-    i.e. if the row is selected, pressed, hovered, focused, disabled or enabled. 
-    The color is painted as an overlay to the row. 
-    
-    To make sure that the row's InkWell is visible (when pressed, hovered and focused), 
-    it is recommended to use a translucent background color.
-    """
-
     data_row_height: ft.OptionalNumber = None
     """
-    Height of each data row. Unlike `DataTable`, min/max height is not supported.
-    """
-
-    data_text_style: Optional[ft.TextStyle] = None
-    """
-    The text style for data rows.
-    """
-
-    bgcolor: Optional[ft.ColorValue] = None
-    """
-    The background [color](https://flet.dev/docs/reference/colors) for the table.
-    """
-
-    gradient: Optional[ft.Gradient] = None
-    """
-    The background gradient for the table.
-    """
-
-    divider_thickness: ft.OptionalNumber = None
-    """
-    The width of the divider that appears between rows. 
+    Height of each data row. 
     
     Note:
-        Must be greater than or equal to zero.
+        `DataTable2` doesn't support 
+        `DataTable.data_row_min_height` and `DataTable.data_row_max_height`.
     """
 
     heading_row_color: ft.ControlStateValue[ft.ColorValue] = None
@@ -244,51 +143,6 @@ class DataTable2(ft.ConstrainedControl):
     To make sure that the row's InkWell is visible (when pressed, hovered and focused), 
     it is recommended to use a translucent color.
     """
-
-    heading_row_height: ft.OptionalNumber = None
-    """
-    The height of the heading row.
-    """
-
-    heading_text_style: Optional[ft.TextStyle] = None
-    """
-    The text style for the heading row.
-    """
-
-    heading_row_decoration: Optional[ft.BoxDecoration] = None
-    """
-    Decoration for the heading row. Overrides color if applied.
-    """
-
-    horizontal_margin: ft.OptionalNumber = None
-    """
-    The horizontal margin between the edges of the table and the content 
-    in the first and last cells of each row.
-
-    When a checkbox is displayed, it is also the margin between the 
-    checkbox the content in the first data column.
-    """
-
-    clip_behavior: ft.ClipBehavior = ft.ClipBehavior.NONE
-    """
-    The content will be clipped (or not) according to this option. 
-    """
-
-    on_select_all: ft.OptionalControlEventCallable = None
-    """
-    Invoked when the user selects or unselects every row, 
-    using the checkbox in the heading row.
-
-    If this is `None`, then the [`DataRow.on_select_change`]() 
-    callback of every row in the table is invoked appropriately instead.
-    
-    To control whether a particular row is selectable or not, 
-    see [`DataRow2.on_select_change`][datarow2.md]. 
-    This callback is only relevant if any row is selectable.
-    """
-
-    def __contains__(self, item):
-        return item in self.columns or item in self.rows
 
     def before_update(self):
         super().before_update()
@@ -308,11 +162,6 @@ class DataTable2(ft.ConstrainedControl):
             len(list(filter(lambda c: c.visible, row.cells))) == len(visible_columns)
             for row in visible_rows
         ), f"each visible DataRow must contain exactly as many visible DataCells as there are visible DataColumns ({len(visible_columns)})"
-        # assert (
-        #     self.data_row_min_height is None
-        #     or self.data_row_max_height is None
-        #     or (self.data_row_min_height <= self.data_row_max_height)
-        # ), "data_row_min_height must be less than or equal to data_row_max_height"
         assert (
             self.divider_thickness is None or self.divider_thickness >= 0
         ), "divider_thickness must be greater than or equal to 0"

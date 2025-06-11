@@ -1,8 +1,9 @@
-import 'package:collection/collection.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flet/flet.dart' as ft;
 import 'package:flet/flet.dart';
 import 'package:flutter/material.dart';
+
+import 'utils/datatable.dart';
 
 class DataTable2Control extends StatefulWidget {
   final Control control;
@@ -31,15 +32,6 @@ class _DataTable2ControlState extends State<DataTable2Control> {
   Widget build(BuildContext context) {
     debugPrint("DataTable2Control build: ${widget.control.id}");
 
-    ColumnSize? parseSize(String? size, [ColumnSize? defValue]) {
-      if (size == null) {
-        return defValue;
-      }
-      return ColumnSize.values.firstWhereOrNull(
-              (e) => e.name.toLowerCase() == size.toLowerCase()) ??
-          defValue;
-    }
-
     var bgColor = widget.control.getString("bgcolor");
     var border = widget.control.getBorder("border", Theme.of(context));
     var borderRadius = widget.control.getBorderRadius("border_radius");
@@ -63,40 +55,37 @@ class _DataTable2ControlState extends State<DataTable2Control> {
           gradient: gradient);
     }
 
-    TableBorder? tableBorder;
-    if (horizontalLines != null || verticalLines != null) {
-      tableBorder = TableBorder(
-          horizontalInside: horizontalLines ?? BorderSide.none,
-          verticalInside: verticalLines ?? BorderSide.none);
-    }
-
     var datatable2 = DataTable2(
-      bottomMargin: widget.control.getDouble("bottom_margin"),
-      minWidth: widget.control.getDouble("minWidth"),
-      //horizontalScrollController: _horizontalController,
-      //scrollController: _controller,
+      // scrollController: _controller,
+      // horizontalScrollController: _horizontalController,
       decoration: decoration,
-      border: tableBorder,
+      border: (horizontalLines != null || verticalLines != null)
+          ? TableBorder(
+              horizontalInside: horizontalLines ?? BorderSide.none,
+              verticalInside: verticalLines ?? BorderSide.none)
+          : null,
+      clipBehavior: widget.control.getClipBehavior("clip_behavior", Clip.none)!,
+      checkboxHorizontalMargin:
+          widget.control.getDouble("checkbox_horizontal_margin"),
+      columnSpacing: widget.control.getDouble("column_spacing"),
+      minWidth: widget.control.getDouble("min_width"),
+      bottomMargin: widget.control.getDouble("bottom_margin"),
       empty: widget.control.buildWidget("empty"),
       isHorizontalScrollBarVisible:
-          widget.control.getBool("is_horizontal_scroll_bar_visible"),
+          widget.control.getBool("visible_horizontal_scroll_bar"),
       isVerticalScrollBarVisible:
-          widget.control.getBool("is_vertical_scroll_bar_visible"),
-      fixedLeftColumns: widget.control.getInt("fixed_left_columns") ?? 0,
-      fixedTopRows: widget.control.getInt("fixed_top_rows") ?? 1,
+          widget.control.getBool("visible_vertical_scroll_bar"),
+      fixedLeftColumns: widget.control.getInt("fixed_left_columns", 0)! ?? 0,
+      fixedTopRows: widget.control.getInt("fixed_top_rows", 1)!,
       fixedColumnsColor:
           widget.control.getColor("fixed_columns_color", context),
       fixedCornerColor: widget.control.getColor("fixed_corner_color", context),
-      smRatio: widget.control.getDouble("sm_ratio") ?? 0.67,
-      lmRatio: widget.control.getDouble("lm_ratio") ?? 1.2,
-      clipBehavior: widget.control.getClipBehavior("clip_behavior", Clip.none)!,
+      smRatio: widget.control.getDouble("sm_ratio", 0.67)!,
+      lmRatio: widget.control.getDouble("lm_ratio", 1.2)!,
       sortArrowIcon:
           widget.control.getIcon("sort_arrow_icon") ?? Icons.arrow_upward,
-      sortArrowAnimationDuration:
-          widget.control.getDuration("sort_arrow_animation_duration") ??
-              Duration(microseconds: 150),
-      checkboxHorizontalMargin:
-          widget.control.getDouble("checkbox_horizontal_margin"),
+      sortArrowAnimationDuration: widget.control.getDuration(
+          "sort_arrow_animation_duration", Duration(microseconds: 150))!,
       checkboxAlignment:
           widget.control.getAlignment("checkboxAlignment", Alignment.center)!,
       headingCheckboxTheme: widget.control
@@ -105,12 +94,11 @@ class _DataTable2ControlState extends State<DataTable2Control> {
           .getCheckboxTheme("data_row_checkbox_theme", Theme.of(context)),
       showHeadingCheckBox:
           widget.control.getBool("show_heading_checkbox", true)!,
-      columnSpacing: widget.control.getDouble("column_spacing"),
       dataRowColor: widget.control
           .getWidgetStateColor("data_row_color", Theme.of(context)),
       dataRowHeight: widget.control.getDouble("data_row_height"),
-      //dataRowMinHeight: widget.control.attrDouble("dataRowMinHeight"),
-      //dataRowMaxHeight: widget.control.attrDouble("dataRowMaxHeight"),
+      sortArrowIconColor:
+          widget.control.getColor("sort_arrow_icon_color", context),
       dataTextStyle:
           widget.control.getTextStyle("data_text_style", Theme.of(context)),
       headingRowColor: widget.control
@@ -128,28 +116,25 @@ class _DataTable2ControlState extends State<DataTable2Control> {
       sortAscending: widget.control.getBool("sort_ascending", false)!,
       sortColumnIndex: widget.control.getInt("sort_column_index"),
       onSelectAll: widget.control.getBool("on_select_all", false)!
-          ? (selected) {
-              widget.control.triggerEvent("select_all", selected);
-            }
+          ? (bool? selected) =>
+              widget.control.triggerEvent("select_all", selected)
           : null,
       columns: widget.control.children("columns").map((column) {
         column.notifyParent = true;
+        var tooltip =
+            parseTooltip(column.get("tooltip"), context, const Placeholder());
         return DataColumn2(
-            //size: ColumnSize.S,
-            size: parseSize(column.getString("size"), ColumnSize.S)!,
+            size: parseColumnSize(column.getString("size"), ColumnSize.S)!,
             fixedWidth: column.getDouble("fixed_width"),
             numeric: column.getBool("numeric", false)!,
-            tooltip: column.getString("tooltip"),
+            tooltip: tooltip?.message,
             headingRowAlignment:
                 column.getMainAxisAlignment("heading_row_alignment"),
-            //mouseCursor: WidgetStateMouseCursor.clickable,
             onSort: column.getBool("on_sort", false)!
-                ? (columnIndex, ascending) {
-                    column.triggerEvent(
-                        "sort", {"i": columnIndex, "a": ascending});
-                  }
+                ? (columnIndex, ascending) => column
+                    .triggerEvent("sort", {"ci": columnIndex, "asc": ascending})
                 : null,
-            label: column.buildWidget("label")!);
+            label: column.buildTextOrWidget("label")!);
       }).toList(),
       rows: widget.control.children("rows").map((row) {
         row.notifyParent = true;
@@ -159,35 +144,24 @@ class _DataTable2ControlState extends State<DataTable2Control> {
           color: row.getWidgetStateColor("color", Theme.of(context)),
           specificRowHeight: row.getDouble("specific_row_height"),
           decoration: row.getBoxDecoration("decoration", context),
-          onSelectChanged: row.getBool("on_select_changed", false)!
-              ? (selected) {
-                  row.triggerEvent("select_changed", selected);
-                }
+          onSelectChanged: row.getBool("on_select_change", false)!
+              ? (selected) => row.triggerEvent("select_change", selected)
               : null,
           onLongPress: row.getBool("on_long_press", false)!
-              ? () {
-                  row.triggerEvent("long_press");
-                }
+              ? () => row.triggerEvent("long_press")
               : null,
           onDoubleTap: row.getBool("on_double_tap", false)!
-              ? () {
-                  row.triggerEvent("double_tap");
-                }
+              ? () => row.triggerEvent("double_tap")
               : null,
           onTap: row.getBool("on_tap", false)!
-              ? () {
-                  row.triggerEvent("tap");
-                }
+              ? () => row.triggerEvent("tap")
               : null,
           onSecondaryTap: row.getBool("on_secondary_tap", false)!
-              ? () {
-                  row.triggerEvent("secondary_tap");
-                }
+              ? () => row.triggerEvent("secondary_tap")
               : null,
-          onSecondaryTapDown: row.getBool("on_secondary_tap_sown", false)!
-              ? (details) {
-                  row.triggerEvent("secondary_tap_down");
-                }
+          onSecondaryTapDown: row.getBool("on_secondary_tap_down", false)!
+              ? (details) =>
+                  row.triggerEvent("secondary_tap_down", details.toMap())
               : null,
           cells: row.children("cells").map((cell) {
             cell.notifyParent = true;
@@ -196,35 +170,19 @@ class _DataTable2ControlState extends State<DataTable2Control> {
               placeholder: cell.getBool("placeholder", false)!,
               showEditIcon: cell.getBool("show_edit_icon", false)!,
               onDoubleTap: cell.getBool("on_double_tap", false)!
-                  ? () {
-                      cell.triggerEvent("double_tap");
-                    }
+                  ? () => cell.triggerEvent("double_tap")
                   : null,
               onLongPress: cell.getBool("on_long_press", false)!
-                  ? () {
-                      cell.triggerEvent("long_press");
-                    }
+                  ? () => cell.triggerEvent("long_press")
                   : null,
               onTap: cell.getBool("on_tap", false)!
-                  ? () {
-                      cell.triggerEvent("tap");
-                    }
+                  ? () => cell.triggerEvent("tap")
                   : null,
               onTapCancel: cell.getBool("on_tap_cancel", false)!
-                  ? () {
-                      cell.triggerEvent("tap_cancel");
-                    }
+                  ? () => cell.triggerEvent("tap_cancel")
                   : null,
               onTapDown: cell.getBool("on_tap_down", false)!
-                  ? (details) {
-                      cell.triggerEvent("tap_down", {
-                        "kind": details.kind?.name,
-                        "lx": details.localPosition.dx,
-                        "ly": details.localPosition.dy,
-                        "gx": details.globalPosition.dx,
-                        "gy": details.globalPosition.dy,
-                      });
-                    }
+                  ? (details) => cell.triggerEvent("tap_down", details.toMap())
                   : null,
             );
           }).toList(),
