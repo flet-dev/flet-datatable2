@@ -144,27 +144,3 @@ class DataTable2(ft.DataTable):
     it is recommended to use a translucent color.
     """
 
-    def before_update(self):
-        super().before_update()
-        assert all(
-            isinstance(column, DataColumn2) for column in self.columns
-        ), "columns must contain only DataColumn2 instances"
-        assert all(
-            isinstance(row, DataRow2) for row in self.rows
-        ), "rows must contain only DataRow2 instances"
-        visible_columns = list(filter(lambda column: column.visible, self.columns))
-        visible_rows = list(filter(lambda row: row.visible, self.rows))
-        assert (
-            len(visible_columns) > 0
-        ), "columns must contain at minimum one visible DataColumn"
-
-        assert all(
-            len(list(filter(lambda c: c.visible, row.cells))) == len(visible_columns)
-            for row in visible_rows
-        ), f"each visible DataRow must contain exactly as many visible DataCells as there are visible DataColumns ({len(visible_columns)})"
-        assert (
-            self.divider_thickness is None or self.divider_thickness >= 0
-        ), "divider_thickness must be greater than or equal to 0"
-        assert self.sort_column_index is None or (
-            0 <= self.sort_column_index < len(visible_columns)
-        ), f"sort_column_index must be greater than or equal to 0 and less than the number of columns ({len(visible_columns)})"
