@@ -121,6 +121,7 @@ plugins:
             show_labels: false
             show_if_no_docstring: true
             inherited_members: true
+            preload_modules: [flet]
             filters:
               - "!^_"   # Exclude private members starting with only one underscore
               - "!before_update"  # Exclude before_update method
