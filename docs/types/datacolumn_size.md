@@ -1,1 +1,1 @@
-::: flet_datatable2.datatable2.DataColumnSize
+::: flet_datatable2.types.DataColumnSize

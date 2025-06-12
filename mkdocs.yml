@@ -78,6 +78,8 @@ nav:
       - DataTable2: datatable2.md
       - DataColumn2: datacolumn2.md
       - DataRow2: datarow2.md
+      - Types:
+        - DataColumnSize: datacolumn_size.md
   - Changelog: changelog.md
   - License: license.md
 
