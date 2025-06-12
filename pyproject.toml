@@ -36,7 +36,7 @@ docs = [
 ]
 
 [tool.uv.sources]
-# flet = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet", rev = "v1" }
+flet = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet", rev = "v1" }
 
 [tool.setuptools]
 license-files = []
