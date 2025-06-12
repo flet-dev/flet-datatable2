@@ -12,7 +12,7 @@ class DataColumn2(ft.DataColumn):
     Extends Flet [`DataColumn`](https://flet.dev/docs/controls/datatable/#datacolumn),
     adding the ability to set relative column size and fixed column width.
 
-    Meant to be used as an item of [`DataTable2.columns`][(p).datatable2.].
+    Meant to be used as an item of [`DataTable2.columns`][(p).].
     """
 
     fixed_width: ft.OptionalNumber = None

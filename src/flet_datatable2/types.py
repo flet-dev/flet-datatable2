@@ -10,7 +10,7 @@ class DataColumnSize(Enum):
     When determining column widths, ratios between `S`, `M` and `L`
     columns are kept (i.e. Large columns are set to 1.2x width of Medium ones).
 
-    See [`DataTable2.sm_ratio`][(p).datatable2.], [`DataTable2.lm_ratio`][(p).datatable2.].
+    See [`DataTable2.sm_ratio`][(p).], [`DataTable2.lm_ratio`][(p).].
     """
 
     S = "s"

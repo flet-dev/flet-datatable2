@@ -14,8 +14,8 @@ class DataTable2(ft.DataTable):
     Extends [DataTable](https://flet.dev/docs/controls/datatable).
 
     Provides sticky header row, scrollable data rows,
-    and additional layout flexibility with [`DataColumn2`][(p).datacolumn2.]
-    and [`DataRow2`][(p).datarow2.].
+    and additional layout flexibility with [`DataColumn2`][(p).]
+    and [`DataRow2`][(p).].
     """
 
     columns: list[Union[DataColumn2, ft.DataColumn]]
