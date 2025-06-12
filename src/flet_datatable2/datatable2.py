@@ -131,16 +131,3 @@ class DataTable2(ft.DataTable):
         `DataTable.data_row_min_height` and `DataTable.data_row_max_height`.
     """
 
-    heading_row_color: ft.ControlStateValue[ft.ColorValue] = None
-    """
-    The background [color](https://flet.dev/docs/reference/colors) for the heading row.
-
-    The effective background color can be made to depend on the 
-    [`ControlState`](https://flet.dev/docs/reference/types/controlstate) state,
-    i.e. if the row is pressed, hovered, focused when sorted. The color is 
-    painted as an overlay to the row. 
-    
-    To make sure that the row's InkWell is visible (when pressed, hovered and focused), 
-    it is recommended to use a translucent color.
-    """
-
