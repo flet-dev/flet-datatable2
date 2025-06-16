@@ -15,7 +15,7 @@ class DataColumn2(ft.DataColumn):
     Meant to be used as an item of [`DataTable2.columns`][(p).].
     """
 
-    fixed_width: ft.OptionalNumber = None
+    fixed_width: Optional[ft.Number] = None
     """
     Defines absolute width of the column in pixels (as opposed to relative [`size`][..] used by default).
     """

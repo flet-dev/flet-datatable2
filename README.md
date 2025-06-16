@@ -1,25 +1,26 @@
-# Flet DataTable2
+# flet-charts
 
-DataTable2 Control for Flet based on [DataTable2 package](https://pub.dev/packages/data_table_2) for Flutter. 
+[![pypi](https://img.shields.io/pypi/v/flet-charts.svg)](https://pypi.python.org/pypi/flet-charts)
+[![downloads](https://static.pepy.tech/badge/flet-charts/month)](https://pepy.tech/project/flet-charts)
+[![license](https://img.shields.io/github/license/flet-dev/flet-charts.svg)](https://github.com/flet-dev/flet-charts/blob/main/LICENSE)
 
-DataTable2 features fixed/sticky header/top rows and left columns and many other useful features additionally to all the properties of built-in Flet [DataTable](https://flet.dev/docs/controls/datatable).
+A Flet extension for creating interactive charts and graphs.
 
-## Installation
-
-Add dependency to `pyproject.toml` of your Flet app:
-
-```
-dependencies = [
-  "flet-datatable2 @ git+https://github.com/flet-dev/flet_datatable2.git",
-  "flet>=0.27.4",
-]
-```
-
-Build your app:
-```
-flet build macos -v
-```
+It is based on the [charts](https://pub.dev/packages/fl_chart) Flutter package.
 
 ## Documentation
 
-https://flet-dev.github.io/flet-datatable2/
+You can find its documentation [here](https://flet-dev.github.io/flet-charts).
+
+## Platform Support
+
+This package supports the following platforms:
+
+| Platform | Supported |
+|----------|:---------:|
+| Windows  |     ✅     |
+| macOS    |     ✅     |
+| Linux    |     ✅     |
+| iOS      |     ✅     |
+| Android  |     ✅     |
+| Web      |     ✅     |

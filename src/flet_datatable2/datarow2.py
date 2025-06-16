@@ -20,7 +20,7 @@ class DataRow2(ft.DataRow):
     Overrides `divider_thickness`.
     """
 
-    specific_row_height: ft.OptionalNumber = None
+    specific_row_height: Optional[ft.Number] = None
     """
     Specific row height. 
     

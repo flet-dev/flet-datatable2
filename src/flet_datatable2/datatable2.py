@@ -1,5 +1,5 @@
 from dataclasses import field
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 import flet as ft
 
@@ -33,7 +33,7 @@ class DataTable2(ft.DataTable):
     Placeholder control shown when there are no data rows.
     """
 
-    bottom_margin: ft.OptionalNumber = None
+    bottom_margin: Optional[ft.Number] = None
     """
     Adds space after the last row if set.
     """
@@ -73,7 +73,7 @@ class DataTable2(ft.DataTable):
     When set always overrides/preceeds default arrow icon color.
     """
 
-    min_width: ft.OptionalNumber = None
+    min_width: Optional[ft.Number] = None
     """
     Minimum table width before horizontal scrolling kicks in.
     """
@@ -122,7 +122,7 @@ class DataTable2(ft.DataTable):
     Alignment of the checkbox.
     """
 
-    data_row_height: ft.OptionalNumber = None
+    data_row_height: Optional[ft.Number] = None
     """
     Height of each data row. 
     
