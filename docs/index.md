@@ -29,24 +29,21 @@ This package supports the following platforms:
 To install the `flet-datatable2` package and add it to your project dependencies:
 
 === "uv"
-
-```bash
-uv add flet-datatable2
-```
+    ```bash
+    uv add flet-datatable2
+    ```
 
 === "pip"
-
-```bash
-pip install flet-datatable2
-```
-
-    You will have to manually add this package to your `requirements.txt` or `pyproject.toml`.
+    ```bash
+    pip install flet-datatable2  # (1)!
+    ```
 
 === "poetry"
+    ```bash
+    poetry add flet-datatable2
+    ```
 
-```bash
-poetry add flet-datatable2
-```
+1. After this, you will have to manually add this package to your `requirements.txt` or `pyproject.toml`.
 
 ## Examples
 
