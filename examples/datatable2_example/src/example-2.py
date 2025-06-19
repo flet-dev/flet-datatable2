@@ -1,6 +1,7 @@
 import flet as ft
-import flet_datatable2 as ftd
 from data import desserts
+
+import flet_datatable2 as ftd
 
 
 def main(page: ft.Page):
@@ -101,5 +102,6 @@ def main(page: ft.Page):
             rows=get_data_rows(desserts),
         ),
     )
+
 
 ft.run(main)
