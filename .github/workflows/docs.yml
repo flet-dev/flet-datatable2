@@ -3,6 +3,7 @@ name: docs
 on:
   push:
     branches:
+      - main
       - v1
     paths:
       - 'LICENSE'

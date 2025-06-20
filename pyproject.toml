@@ -33,6 +33,7 @@ docs = [
     "pymdown-extensions",
     "mkdocs-glightbox",
     "mkdocs-section-index",
+    "griffe-modernized-annotations",
     "pygments>=2.16",
 ]
 
@@ -66,10 +67,6 @@ select = [
     "SIM",
     # isort
     "I"
-]
-ignore = [
-    # Pyflakes
-    "F401", # unused import
 ]
 preview = true
 

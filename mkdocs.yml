@@ -43,6 +43,7 @@ theme:
     - content.action.view
     - content.action.annotate
     - content.action.copy
+    - content.tooltips
     - content.action.tooltips
     - content.code.annotate
     - content.code.copy
@@ -130,6 +131,15 @@ plugins:
             filters:
               - "!^_"   # Exclude private members starting with only one underscore
               - "!before_update"
+              - "!before_event"
+              - "!clean"
+              - "!did_mount"
+              - "!init"
+              - "!is_isolated"
+              - "!update"
+              - "!will_unmount"
+            extensions:
+              - griffe_modernized_annotations
           inventories:
             - url: https://docs.python.org/3/objects.inv
               domains: [ py, std ]
