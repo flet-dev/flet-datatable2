@@ -10,16 +10,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Added
 
 - Deployed online documentation: https://flet-dev.github.io/flet-datatable2/
-- New enums:
-    - `DataColumnSize`
+- New enums: `DataColumnSize`
 
 ### Changed
 
-- Refactored `DataTable2`, `DataColumn2` and `DataRow2` controls to use `@flet.control` dataclass-style definition. 
+- Refactored all controls to use `@flet.control` dataclass-style definition. 
 - Additionally, they are now all based on their flet counterparts:
-  - `DataTable2` is now based on `flet.DataTable`
-  - `DataColumn2` is now based on `flet.DataColumn`
-  - `DataRow2` is now based on `flet.DataRow`
+    - `DataTable2` is now based on `flet.DataTable`
+    - `DataColumn2` is now based on `flet.DataColumn`
+    - `DataRow2` is now based on `flet.DataRow`
 
 ## [0.1.0] - 2025-03-16
 

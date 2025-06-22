@@ -12,7 +12,7 @@ __all__ = ["DataTable2"]
 @ft.control("DataTable2")
 class DataTable2(ft.DataTable):
     """
-    Extends [DataTable](https://flet.dev/docs/controls/datatable).
+    Extends [`DataTable`](https://flet.dev/docs/controls/datatable).
 
     Provides sticky header row, scrollable data rows,
     and additional layout flexibility with [`DataColumn2`][(p).]
