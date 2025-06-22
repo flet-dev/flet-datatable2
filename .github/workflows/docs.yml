@@ -13,7 +13,7 @@ on:
       - 'pyproject.toml'
       - '.github/workflows/docs.yml'
       - 'src/flet_datatable2/**'
-      - 'examples/flet_datatable2_example/src/main.py'
+      - 'examples/flet_datatable2_example/src/**'
 
   workflow_dispatch:    # Allow manual trigger from the GitHub Actions UI
 

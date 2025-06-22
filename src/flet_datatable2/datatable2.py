@@ -8,6 +8,7 @@ from .datarow2 import DataRow2
 
 __all__ = ["DataTable2"]
 
+
 @ft.control("DataTable2")
 class DataTable2(ft.DataTable):
     """
@@ -102,7 +103,7 @@ class DataTable2(ft.DataTable):
         default_factory=lambda: ft.Duration(milliseconds=150)
     )
     """
-    Duration of sort arrow animation in milliseconds.
+    Duration of sort arrow animation.
     """
 
     visible_horizontal_scroll_bar: Optional[bool] = None
@@ -130,4 +131,8 @@ class DataTable2(ft.DataTable):
         `DataTable2` doesn't support 
         `DataTable.data_row_min_height` and `DataTable.data_row_max_height`.
     """
+
+    # present in parent but of no use in DataTable2
+    data_row_min_height: None = field(init=False, repr=False, compare=False)
+    data_row_max_height: None = field(init=False, repr=False, compare=False)
 
