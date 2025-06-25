@@ -7,7 +7,7 @@ requires-python = ">=3.10"
 license = "Apache-2.0"
 authors = [{ name = "Flet contributors", email = "hello@flet.dev" }]
 dependencies = [
-    "flet",
+    "flet >=0.70.0",
 ]
 
 [project.urls]
@@ -37,9 +37,6 @@ docs = [
     "griffe-modernized-annotations",
     "pygments>=2.16",
 ]
-
-[tool.uv.sources]
-# flet = { git = "https://github.com/flet-dev/flet", subdirectory = "sdk/python/packages/flet", rev = "v1" }
 
 [build-system]
 requires = ["setuptools"]
