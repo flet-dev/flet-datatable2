@@ -4,7 +4,7 @@
 [![downloads](https://static.pepy.tech/badge/flet-datatable2/month)](https://pepy.tech/project/flet-datatable2)
 [![license](https://img.shields.io/github/license/flet-dev/flet-datatable2.svg)](https://github.com/flet-dev/flet-datatable2/blob/main/LICENSE)
 
-An enhanced DataTable for Flet apps that builds on the built-in component by adding sticky headers,
+An enhanced data table for [Flet](https://flet.dev) apps that builds on the built-in component by adding sticky headers,
 fixed top rows, and fixed left columns while preserving all core features.
 
 It is based on [data_table_2](https://pub.dev/packages/data_table_2) Flutter package.
