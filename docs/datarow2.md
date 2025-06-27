@@ -1,3 +1,1 @@
-# DataRow2 class
-
-:::src.flet_datatable2.datarow2
+::: flet_datatable2.datarow2.DataRow2

@@ -1,0 +1,21 @@
+[project]
+name = "flet-datatable2-example"
+version = "1.0.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Flet Contributors", email = "hello@flet.dev" }]
+dependencies = [
+  "flet-datatable2",
+  "flet",
+]
+
+# Docs: https://flet.dev/docs/publish
+[tool.flet]
+org = "com.mycompany"
+product = "flet-datatable2-example"
+company = "Flet"
+copyright = "Copyright (C) 2025 by Flet"
+
+[tool.flet.app]
+path = "src"

@@ -1,15 +1,188 @@
-site_name: "DataTable2"
+# Project information
+site_name: "flet-datatable2"
+site_url: https://flet-dev.github.io/flet-datatable2/
+site_author: Flet Contributors
+site_description: An enhanced DataTable for Flet apps.
 
+# Repository
+edit_uri: edit/main/docs/
+repo_name: flet-dev/flet-datatable2
+repo_url: https://github.com/flet-dev/flet-datatable2
+
+# Copyright
+copyright: Copyright &copy; 2025 Flet Contributors
+
+# Theme
 theme:
   name: "material"
   favicon: 'images/favicon.ico'
   logo: 'images/logo.svg'
+  icon:
+    annotation: material/plus-circle
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+    - scheme: slate
+      primary: indigo
+      accent: pink
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.action.annotate
+    - content.action.copy
+    - content.tooltips
+    - content.action.tooltips
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    # - navigation.tabs
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.footer
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
 
-plugins:
-  - mkdocstrings
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/flet-dev
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/bCFXYgZR3b
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/fletdev
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/fletdev.bsky.social
 
+# Navigation
 nav:
   - Getting Started: index.md
-  - DataTable2: datatable2.md
-  - DataColumn2: datacolumn2.md
-  - DataRow2: datarow2.md
+  - API Reference:
+      - DataTable2: datatable2.md
+      - DataColumn2: datacolumn2.md
+      - DataRow2: datarow2.md
+      - Types:
+          - DataColumnSize: types/datacolumn_size.md
+  - Changelog: changelog.md
+  - License: license.md
+
+# Validation
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+# Watch
+watch:
+  - docs
+  - src
+
+# Plugins
+plugins:
+  # - footnotes
+  - search:
+      lang: en
+  - mike:
+      alias_type: symlink
+  - glightbox
+  - section-index
+  - mkdocstrings:
+      default_handler: python_xref
+      handlers:
+        python_xref:
+          options:
+            relative_crossrefs: true
+            docstring_style: google
+            show_signature_annotations: true
+            signature_crossrefs: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_bases: true
+            show_source: false
+            group_by_category: true
+            show_category_heading: false
+            show_labels: false
+            show_if_no_docstring: true
+            docstring_section_style: spacy
+            inherited_members: true
+            preload_modules: [ flet ]
+            filters:
+              - "!^_"   # Exclude private members starting with only one underscore
+              - "!before_update"
+              - "!before_event"
+              - "!clean"
+              - "!did_mount"
+              - "!init"
+              - "!is_isolated"
+              - "!update"
+              - "!will_unmount"
+            extensions:
+              - griffe_modernized_annotations
+          inventories:
+            - url: https://docs.python.org/3/objects.inv
+              domains: [ py, std ]
+            - url: https://typing-extensions.readthedocs.io/en/latest/objects.inv
+
+# Markdown Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: "#"
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde

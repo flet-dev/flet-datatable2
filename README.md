@@ -1,25 +1,47 @@
-# Flet DataTable2
+# flet-datatable2
 
-DataTable2 Control for Flet based on [DataTable2 package](https://pub.dev/packages/data_table_2) for Flutter. 
+[![pypi](https://img.shields.io/pypi/v/flet-datatable2.svg)](https://pypi.python.org/pypi/flet-datatable2)
+[![downloads](https://static.pepy.tech/badge/flet-datatable2/month)](https://pepy.tech/project/flet-datatable2)
+[![license](https://img.shields.io/github/license/flet-dev/flet-datatable2.svg)](https://github.com/flet-dev/flet-datatable2/blob/main/LICENSE)
 
-DataTable2 features fixed/sticky header/top rows and left columns and many other useful features additionally to all the properties of built-in Flet [DataTable](https://flet.dev/docs/controls/datatable).
+An enhanced data table for [Flet](https://flet.dev) apps that builds on the built-in component by adding sticky headers,
+fixed top rows, and fixed left columns while preserving all core features.
 
-## Installation
-
-Add dependency to `pyproject.toml` of your Flet app:
-
-```
-dependencies = [
-  "flet-datatable2 @ git+https://github.com/flet-dev/flet_datatable2.git",
-  "flet>=0.27.4",
-]
-```
-
-Build your app:
-```
-flet build macos -v
-```
+It is based on [data_table_2](https://pub.dev/packages/data_table_2) Flutter package.
 
 ## Documentation
 
-https://flet-dev.github.io/flet-datatable2/
+You can find its documentation [here](https://flet-dev.github.io/flet-datatable2).
+
+## Platform Support
+
+This package supports the following platforms:
+
+| Platform | Supported |
+|----------|:---------:|
+| Windows  |     ✅     |
+| macOS    |     ✅     |
+| Linux    |     ✅     |
+| iOS      |     ✅     |
+| Android  |     ✅     |
+| Web      |     ✅     |
+
+## Installation
+
+To install the `flet-datatable2` package and add it to your project dependencies:
+
+- Using `uv`:
+    ```bash
+    uv add flet-datatable2
+    ```
+
+- Using `pip`:
+    ```bash
+    pip install flet-datatable2
+    ```
+    After this, you will have to manually add this package to your `requirements.txt` or `pyproject.toml`.
+
+- Using `poetry`:
+    ```bash
+    poetry add flet-datatable2
+    ```
