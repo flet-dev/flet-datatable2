@@ -72,7 +72,7 @@ def main(page: ft.Page):
             data_rows.append(
                 ftd.DataRow2(
                     specific_row_height=50,
-                    on_select_change=select_row,
+                    on_select_changed=select_row,
                     cells=[
                         ft.DataCell(content=ft.Text(dessert.name)),
                         ft.DataCell(content=ft.Text(dessert.calories)),
