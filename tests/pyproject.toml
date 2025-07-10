@@ -1,0 +1,30 @@
+[project]
+name = "datatable2_example"
+version = "1.0.0"
+description = "Flet DataTable2 Example"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = [
+  "flet-datatable2",
+  "flet >=0.70.0.dev0",
+]
+
+# Docs: https://flet.dev/docs/publish
+[tool.flet]
+org = "com.mycompany"
+product = "Flet DataTable2 Example"
+company = "Flet"
+copyright = "Copyright (C) 2025 by Flet"
+
+[tool.flet.dev_packages]
+flet-datatable2 = "../"
+
+[tool.uv]
+dev-dependencies = [
+    "flet-cli >=0.70.0.dev0",
+    "flet-desktop >=0.70.0.dev0",
+]
+
+[tool.uv.sources]
+flet-datatable2 = { path = "../", editable = true }

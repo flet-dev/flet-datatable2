@@ -117,7 +117,7 @@ class DataTable2(ft.DataTable):
     """
 
     checkbox_alignment: ft.Alignment = field(
-        default_factory=lambda: ft.Alignment.center()
+        default_factory=lambda: ft.Alignment.CENTER
     )
     """
     Alignment of the checkbox.
