@@ -11,10 +11,19 @@ def main(page: ft.Page):
     def select_row(e: ft.ControlEvent):
         print("on_select_row")
         e.control.selected = not e.control.selected
-        e.control.update()
+        # e.control.update()
 
     def sort_column(e: ft.DataColumnSortEvent):
         print(f"Sorting column {e.column_index}, ascending={e.ascending}")
+        dt.sort_column_index = e.column_index
+        dt.sort_ascending = e.ascending
+        sorted_desserts = sorted(
+            desserts,
+            key=lambda d: getattr(d, e.control.label.value.lower()),
+            reverse=not dt.sort_ascending,
+        )
+        dt.rows = get_data_rows(sorted_desserts)
+        # dt.update()
 
     def all_selected(e: ft.ControlEvent):
         print("All selected")
