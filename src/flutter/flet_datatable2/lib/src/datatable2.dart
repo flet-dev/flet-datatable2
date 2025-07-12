@@ -87,7 +87,7 @@ class _DataTable2ControlState extends State<DataTable2Control> {
       sortArrowAnimationDuration: widget.control.getDuration(
           "sort_arrow_animation_duration", Duration(microseconds: 150))!,
       checkboxAlignment:
-          widget.control.getAlignment("checkboxAlignment", Alignment.center)!,
+          widget.control.getAlignment("checkbox_alignment", Alignment.center)!,
       headingCheckboxTheme: widget.control
           .getCheckboxTheme("heading_checkbox_theme", Theme.of(context)),
       datarowCheckboxTheme: widget.control
