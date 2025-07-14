@@ -10,4 +10,4 @@
 /src/flet_datatable2.egg-info
 .DS_Store
 uv.lock
-/tests/__pycache__
+__pycache__/
