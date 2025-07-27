@@ -102,6 +102,7 @@ plugins:
   # - footnotes
   - search:
       lang: en
+  - open-in-new-tab
   - mike:
       alias_type: symlink
   - glightbox
@@ -130,17 +131,11 @@ plugins:
             preload_modules: [ flet ]
             filters:
               - "!^_"   # Exclude private members starting with only one underscore
-              - "!before_update"
-              - "!before_event"
-              - "!clean"
-              - "!did_mount"
-              - "!init"
-              - "!is_isolated"
-              - "!update"
-              - "!will_unmount"
             extensions:
               - griffe_modernized_annotations
+              - griffe_warnings_deprecated
           inventories:
+            - url: https://docs.flet.dev/objects.inv
             - url: https://docs.python.org/3/objects.inv
               domains: [ py, std ]
             - url: https://typing-extensions.readthedocs.io/en/latest/objects.inv
