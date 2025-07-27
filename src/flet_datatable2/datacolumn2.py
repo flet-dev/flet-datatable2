@@ -9,7 +9,7 @@ __all__ = ["DataColumn2"]
 @ft.control("DataColumn2")
 class DataColumn2(ft.DataColumn):
     """
-    Extends Flet [`DataColumn`](https://flet.dev/docs/controls/datatable/#datacolumn),
+    Extends [`flet.DataColumn`][flet.DataColumn],
     adding the ability to set relative column size and fixed column width.
 
     Meant to be used as an item of [`DataTable2.columns`][(p).].
@@ -17,7 +17,8 @@ class DataColumn2(ft.DataColumn):
 
     fixed_width: Optional[ft.Number] = None
     """
-    Defines absolute width of the column in pixels (as opposed to relative [`size`][..] used by default).
+    Defines absolute width of the column in pixels 
+    (as opposed to relative [`size`][..] used by default).
     """
 
     size: Optional[DataColumnSize] = DataColumnSize.S
