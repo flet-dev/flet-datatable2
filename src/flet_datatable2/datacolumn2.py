@@ -7,7 +7,7 @@ from .types import DataColumnSize
 __all__ = ["DataColumn2"]
 
 
-@ft.control("DataColumn2")
+@ft.control("DataColumn2", kw_only=True)
 class DataColumn2(ft.DataColumn):
     """
     Extends [`flet.DataColumn`][flet.DataColumn],

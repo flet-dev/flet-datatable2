@@ -20,3 +20,8 @@ repos:
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
+
+  - repo: https://github.com/aio-libs/sort-all
+    rev: v1.3.0
+    hooks:
+      - id: sort-all

@@ -22,44 +22,44 @@ def main(page: ft.Page):
     def get_data_columns():
         data_columns = [
             ftd.DataColumn2(
-                ft.Text("Name"),
+                label=ft.Text("Name"),
                 size=ftd.DataColumnSize.L,
                 on_sort=sort_column,
                 heading_row_alignment=ft.MainAxisAlignment.START,
             ),
             ftd.DataColumn2(
-                ft.Text("Calories"),
+                label=ft.Text("Calories"),
                 on_sort=sort_column,
                 numeric=True,
                 heading_row_alignment=ft.MainAxisAlignment.END,
             ),
             ftd.DataColumn2(
-                ft.Text("Fat"),
+                label=ft.Text("Fat"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Carbs"),
+                label=ft.Text("Carbs"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Protein"),
+                label=ft.Text("Protein"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Sodium"),
+                label=ft.Text("Sodium"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Calcium"),
+                label=ft.Text("Calcium"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Iron"),
+                label=ft.Text("Iron"),
                 on_sort=sort_column,
                 numeric=True,
             ),
