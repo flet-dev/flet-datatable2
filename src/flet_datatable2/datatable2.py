@@ -12,11 +12,18 @@ __all__ = ["DataTable2"]
 @ft.control("DataTable2")
 class DataTable2(ft.DataTable):
     """
-    Extends [`DataTable`](https://flet.dev/docs/controls/datatable).
+    Extends [`flet.DataTable`][flet.DataTable].
 
     Provides sticky header row, scrollable data rows,
     and additional layout flexibility with [`DataColumn2`][(p).]
     and [`DataRow2`][(p).].
+
+    Note:
+        `DataTable2` doesn't support
+        [`flet.DataTable.data_row_min_height`][flet.DataTable.data_row_min_height]
+        and [`flet.DataTable.data_row_max_height`][flet.DataTable.data_row_max_height]
+        properties present in the parent [`flet.DataTable`][flet.DataTable].
+        Use [`data_row_height`][(c).] instead.
     """
 
     columns: list[Union[DataColumn2, ft.DataColumn]]
@@ -117,7 +124,7 @@ class DataTable2(ft.DataTable):
     """
 
     checkbox_alignment: ft.Alignment = field(
-        default_factory=lambda: ft.Alignment.center()
+        default_factory=lambda: ft.Alignment.CENTER
     )
     """
     Alignment of the checkbox.
@@ -125,14 +132,13 @@ class DataTable2(ft.DataTable):
 
     data_row_height: Optional[ft.Number] = None
     """
-    Height of each data row. 
-    
-    Note:
-        `DataTable2` doesn't support 
-        `DataTable.data_row_min_height` and `DataTable.data_row_max_height`.
+    Height of each data row.
     """
 
-    # present in parent but of no use in DataTable2
-    data_row_min_height: None = field(init=False, repr=False, compare=False)
-    data_row_max_height: None = field(init=False, repr=False, compare=False)
-
+    # present in parent (DataTable) but of no use in DataTable2
+    data_row_min_height: None = field(
+        init=False, repr=False, compare=False, metadata={"skip": True}
+    )
+    data_row_max_height: None = field(
+        init=False, repr=False, compare=False, metadata={"skip": True}
+    )

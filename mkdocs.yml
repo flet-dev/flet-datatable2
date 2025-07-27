@@ -127,6 +127,7 @@ plugins:
             show_labels: false
             show_if_no_docstring: true
             docstring_section_style: spacy
+            separate_signature: true
             inherited_members: true
             preload_modules: [ flet ]
             filters:

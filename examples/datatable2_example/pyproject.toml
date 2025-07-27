@@ -1,13 +1,13 @@
 [project]
 name = "flet-datatable2-example"
 version = "1.0.0"
-description = ""
+description = "flet-datatable2-example"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Flet Contributors", email = "hello@flet.dev" }]
 dependencies = [
-  "flet-datatable2",
-  "flet",
+  "flet-datatable2 >=0.2.0.dev0",
+  "flet >=0.70.0.dev0",
 ]
 
 # Docs: https://flet.dev/docs/publish
