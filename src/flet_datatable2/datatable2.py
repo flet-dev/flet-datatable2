@@ -132,9 +132,13 @@ class DataTable2(ft.DataTable):
 
     data_row_height: Optional[ft.Number] = None
     """
-    Height of each data row. 
+    Height of each data row.
     """
 
     # present in parent (DataTable) but of no use in DataTable2
-    data_row_min_height: None = field(init=False, repr=False, compare=False, metadata={"skip": True})
-    data_row_max_height: None = field(init=False, repr=False, compare=False, metadata={"skip": True})
+    data_row_min_height: None = field(
+        init=False, repr=False, compare=False, metadata={"skip": True}
+    )
+    data_row_max_height: None = field(
+        init=False, repr=False, compare=False, metadata={"skip": True}
+    )

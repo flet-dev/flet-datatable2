@@ -8,9 +8,9 @@ def main(page: ft.Page):
         fdt.DataTable2(
             empty=ft.Text("This table is empty."),
             columns=[
-                fdt.DataColumn2(ft.Text("First name")),
-                fdt.DataColumn2(ft.Text("Last name")),
-                fdt.DataColumn2(ft.Text("Age"), numeric=True),
+                fdt.DataColumn2(label=ft.Text("First name")),
+                fdt.DataColumn2(label=ft.Text("Last name")),
+                fdt.DataColumn2(label=ft.Text("Age"), numeric=True),
             ],
         ),
     )

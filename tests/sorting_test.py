@@ -8,7 +8,7 @@ def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-    def select_row(e: ft.ControlEvent):
+    def select_row(e: ft.Event[ftd.DataRow2]):
         print("on_select_row")
         e.control.selected = not e.control.selected
         # e.control.update()
@@ -31,44 +31,44 @@ def main(page: ft.Page):
     def get_data_columns():
         data_columns = [
             ftd.DataColumn2(
-                ft.Text("Name"),
+                label=ft.Text("Name"),
                 size=ftd.DataColumnSize.L,
                 on_sort=sort_column,
                 heading_row_alignment=ft.MainAxisAlignment.START,
             ),
             ftd.DataColumn2(
-                ft.Text("Calories"),
+                label=ft.Text("Calories"),
                 on_sort=sort_column,
                 numeric=True,
                 heading_row_alignment=ft.MainAxisAlignment.END,
             ),
             ftd.DataColumn2(
-                ft.Text("Fat"),
+                label=ft.Text("Fat"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Carbs"),
+                label=ft.Text("Carbs"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Protein"),
+                label=ft.Text("Protein"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Sodium"),
+                label=ft.Text("Sodium"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Calcium"),
+                label=ft.Text("Calcium"),
                 on_sort=sort_column,
                 numeric=True,
             ),
             ftd.DataColumn2(
-                ft.Text("Iron"),
+                label=ft.Text("Iron"),
                 on_sort=sort_column,
                 numeric=True,
             ),
@@ -81,7 +81,7 @@ def main(page: ft.Page):
             data_rows.append(
                 ftd.DataRow2(
                     specific_row_height=50,
-                    on_select_changed=select_row,
+                    on_select_change=select_row,
                     cells=[
                         ft.DataCell(content=ft.Text(dessert.name)),
                         ft.DataCell(content=ft.Text(dessert.calories)),
