@@ -52,12 +52,16 @@ docs = [
     "markdown-exec[ansi] >=1.11.0",
     "pydocstyle >=6.3.0",
     "linkcheckmd >=1.4.0",
+    "mkdocs-external-images",
     { include-group = 'docs-coverage' },
 ]
 all = [
     { include-group = 'dev' },
     { include-group = 'docs' },
 ]
+
+[tool.uv.sources]
+mkdocs-external-images = { git = "https://github.com/flet-dev/mkdocs-external-images", tag = "v0.2.0" }
 
 [build-system]
 requires = ["setuptools"]
