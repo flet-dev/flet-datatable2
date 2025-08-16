@@ -3,23 +3,20 @@ image: ubuntu
 version: '0.1.{build}'
 
 environment:
+  PYTHON_VERSION: 3.12
   UV_PUBLISH_TOKEN:
     secure: 174ncAbF5IjSIkmioPt62jeSnzmTlRNchUkE4QdjDWH8xK1olYtySXLJpo2q95HcP7lWJky1hv4APESiRRHnBWoY0XRFafzM/mbCDMzG1tZXiXZmpP1qzHAtRP2QSCIg18xh1TMktraUdTi7sbJnjjRhqzgbW1k0kLBxKw79MPFBhYQ/TiGcmaYWZbWVZNY3HCUCb6Dt7bG1OE2Ul9rD1gvs55xwO9Oq9FOVA1VnMYw=
 
-stack:
-- python 3.12
-
 install:
 - source .ci/update_build_version.sh
-- python --version
-- python -m ensurepip --upgrade
-- pip3 install --upgrade tomlkit pyyaml
 - curl -LsSf https://astral.sh/uv/install.sh | sh
-- export PATH=$HOME/.local/bin:$PATH
+- export PATH="$HOME/.local/bin:$PATH"
+- uv python install $PYTHON_VERSION
+- uv python pin $PYTHON_VERSION
 
 build_script:
-- python .ci/patch_toml_version.py pyproject.toml $PYPI_VER
-- python .ci/patch_pubspec_version.py src/flutter/flet_*/pubspec.yaml $PKG_VER
+- uv run .ci/patch_toml_version.py pyproject.toml $PYPI_VER
+- uv run .ci/patch_pubspec_version.py src/flutter/flet_*/pubspec.yaml $PKG_VER
 - (cd src/flutter/* && dart pub get && dart analyze && cd -)
 - uv build
 

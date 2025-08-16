@@ -110,6 +110,11 @@ plugins:
       alias_type: symlink
   - glightbox
   - section-index
+  - external-images:
+      mappings:
+        - source_dir: examples
+          target_url_path: examples
+          include_exts: [ ".png", ".gif", ".svg" ]
   - mkdocstrings:
       default_handler: python_xref
       handlers:
@@ -135,7 +140,6 @@ plugins:
             preload_modules: [ flet ]
             filters:
               - "!^_"   # Exclude private members starting with only one underscore
-              - "!get_event_field_type"
             extensions:
               - griffe_modernized_annotations
               - griffe_warnings_deprecated
@@ -186,3 +190,4 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - pymdownx.blocks.caption

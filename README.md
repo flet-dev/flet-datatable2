@@ -26,7 +26,9 @@ This package supports the following platforms:
 | Android  |     ✅     |
 | Web      |     ✅     |
 
-## Installation
+## Usage
+
+### Installation
 
 To install the `flet-datatable2` package and add it to your project dependencies:
 
@@ -45,3 +47,7 @@ To install the `flet-datatable2` package and add it to your project dependencies
     ```bash
     poetry add flet-datatable2
     ```
+
+### Examples
+
+For examples, see [these](./examples).
