@@ -3,8 +3,8 @@ from typing import Optional, Union
 
 import flet as ft
 
-from .datacolumn2 import DataColumn2
-from .datarow2 import DataRow2
+from flet_datatable2.datacolumn2 import DataColumn2
+from flet_datatable2.datarow2 import DataRow2
 
 __all__ = ["DataTable2"]
 
