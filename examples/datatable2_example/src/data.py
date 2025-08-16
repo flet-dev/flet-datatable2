@@ -38,7 +38,7 @@ desserts = [
     Dessert("Ice Cream Sandwich with honey", 301, 9.0, 49, 4.3, 129, 8, 1),
     Dessert("Eclair with honey", 326, 16.0, 36, 6.0, 337, 6, 7),
     Dessert("Cupcake with honey", 369, 3.7, 79, 4.3, 413, 3, 8),
-    Dessert("Gingerbread with hone", 420, 16.0, 61, 3.9, 327, 7, 16),
+    Dessert("Gingerbread with honey", 420, 16.0, 61, 3.9, 327, 7, 16),
     Dessert("Jelly Bean with honey", 439, 0.0, 106, 0.0, 50, 0, 0),
     Dessert("Lollipop with honey", 456, 0.2, 110, 0.0, 38, 0, 2),
     Dessert("Honeycomb with honey", 472, 3.2, 99, 6.5, 562, 0, 45),
