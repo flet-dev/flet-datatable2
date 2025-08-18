@@ -3,8 +3,8 @@ from typing import Optional, Union
 
 import flet as ft
 
-from .datacolumn2 import DataColumn2
-from .datarow2 import DataRow2
+from flet_datatable2.datacolumn2 import DataColumn2
+from flet_datatable2.datarow2 import DataRow2
 
 __all__ = ["DataTable2"]
 
@@ -20,9 +20,9 @@ class DataTable2(ft.DataTable):
 
     Note:
         `DataTable2` doesn't support
-        [`flet.DataTable.data_row_min_height`][flet.DataTable.data_row_min_height]
-        and [`flet.DataTable.data_row_max_height`][flet.DataTable.data_row_max_height]
-        properties present in the parent [`flet.DataTable`][flet.DataTable].
+        [`DataTable.data_row_min_height`][flet.DataTable.data_row_min_height]
+        and [`DataTable.data_row_max_height`][flet.DataTable.data_row_max_height]
+        properties present in the parent [`DataTable`][flet.DataTable].
         Use [`data_row_height`][(c).] instead.
     """
 

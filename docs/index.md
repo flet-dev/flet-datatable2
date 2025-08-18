@@ -45,22 +45,6 @@ To install the `flet-datatable2` package and add it to your project dependencies
     poetry add flet-datatable2
     ```
 
+### Examples
 
-## Examples
-
-[Live demo](https://flet-controls-gallery.fly.dev/layout/datatable2)
-
-### Example 1
-
-```python
---8<-- "examples/datatable2_example/src/example-1.py"
-```
-
-### Example 2
-
-![DataTable2 example 2](assets/example-2.gif)
-
-```
-```python
---8<-- "examples/datatable2_example/src/example-2.py"
-```
+See [these](datatable2.md#examples).
