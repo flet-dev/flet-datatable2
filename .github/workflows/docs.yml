@@ -24,8 +24,7 @@ permissions:
   contents: write  # Required to push to the gh-pages branch
 
 env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}         # Token used by mkdocs for pushing
-  UV_SYSTEM_PYTHON: 1                       # Use system Python interpreter with uv
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}         # used by mkdocs for publishing
 
 jobs:
   deploy:
@@ -36,23 +35,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+
       - name: Configure Git for mkdocs
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version-file: "pyproject.toml"  # Match Python version with project config
-
-      - name: Install dependencies
-        run: |
-          uv pip install -e .
-          uv pip install --group docs --group lint
-
       - name: Deploy to GitHub Pages
-        run: uv run mkdocs gh-deploy --force
+        run: |
+          uv venv
+          uv run --group docs --group lint mkdocs gh-deploy --force -v
