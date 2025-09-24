@@ -63,6 +63,7 @@ jobs:
             publish:
               - 'src/**'
               - 'pyproject.toml'
+              - 'README.md'
 
       - name: Publish Python package
         if: steps.changes.outputs.publish == 'true' && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
