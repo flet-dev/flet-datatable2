@@ -66,5 +66,9 @@ jobs:
               - 'README.md'
 
       - name: Publish Python package
-        if: steps.changes.outputs.publish == 'true' && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
+        if: >
+          github.event_name != 'pull_request' && (
+            startsWith(github.ref, 'refs/tags/') ||
+            (github.ref == 'refs/heads/main' && steps.changes.outputs.publish == 'true')
+          )
         run: uv publish
