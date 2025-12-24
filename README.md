@@ -1,3 +1,7 @@
+# THIS PROJECT HAS BEEN ARCHIVED
+
+`flet-datatable2` is now part of the main [Flet repository](https://github.com/flet-dev/flet/tree/main/sdk/python/packages/flet-datatable2).
+
 # flet-datatable2
 
 [![pypi](https://img.shields.io/pypi/v/flet-datatable2.svg)](https://pypi.python.org/pypi/flet-datatable2)
